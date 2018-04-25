@@ -3,6 +3,7 @@ using System.Linq;
 using DSA.DAL.Context;
 using DSA.DAL.Repositories.Contract;
 using DSA.Domain.Drons;
+using Microsoft.EntityFrameworkCore;
 
 namespace DSA.DAL.Repositories
 {
@@ -17,7 +18,10 @@ namespace DSA.DAL.Repositories
 
         public IEnumerable<DronModel> GetDronModels(string model)
         {
-            return _dbContext.DronModels.Where(t => t.Name.Contains(model)).ToList();
+            return _dbContext.DronModels
+                .Include(t=> t.DronCompany)
+                .Include(t=> t.DronType)
+                .Where(t => t.Name.Contains(model)).ToList();
         }
     }
 }
