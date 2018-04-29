@@ -1,12 +1,12 @@
-﻿using DSA.BLL.Dto.Rents;
-using DSA.BLL.Services.Contracts;
-using DSA.Domain.Params;
-using DSA.WebApi.Models;
+﻿using SAT.BLL.Dto.Rents;
+using SAT.BLL.Services.Contracts;
+using SAT.Domain.Params;
+using SAT.WebApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DSA.WebApi.Controllers
+namespace SAT.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

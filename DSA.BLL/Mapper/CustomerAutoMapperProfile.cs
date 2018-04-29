@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using DSA.BLL.Dto.Customers;
-using DSA.Domain.Customers;
+using SAT.BLL.Dto.Customers;
+using SAT.Domain.Customers;
 
-namespace DSA.BLL.Mapper
+namespace SAT.BLL.Mapper
 {
     public class CustomerAutoMapperProfile : Profile
     {

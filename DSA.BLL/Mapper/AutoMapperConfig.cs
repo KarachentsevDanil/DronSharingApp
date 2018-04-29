@@ -1,4 +1,4 @@
-﻿namespace DSA.BLL.Mapper
+﻿namespace SAT.BLL.Mapper
 {
     public class AutoMapperConfig
     {
@@ -7,7 +7,7 @@
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<CustomerAutoMapperProfile>();
-                cfg.AddProfile<DronAutoMapperProfile>();
+                cfg.AddProfile<AirTaxiAutoMapperProfile>();
                 cfg.AddProfile<RentAutoMapperProfile>();
             });
 

@@ -1,7 +1,7 @@
-﻿using DSA.BLL.Dto.Rents;
-using DSA.Domain.Params;
+﻿using SAT.BLL.Dto.Rents;
+using SAT.Domain.Params;
 
-namespace DSA.BLL.Services.Contracts
+namespace SAT.BLL.Services.Contracts
 {
     public interface IRentService
     {

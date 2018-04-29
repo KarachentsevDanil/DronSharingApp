@@ -1,4 +1,4 @@
-﻿namespace DSA.BLL.Dto.Customers
+﻿namespace SAT.BLL.Dto.Customers
 {
     public class CustomerLoginDto
     {

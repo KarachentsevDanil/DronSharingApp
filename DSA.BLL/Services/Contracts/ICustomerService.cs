@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DSA.BLL.Dto.Customers;
+using SAT.BLL.Dto.Customers;
 
-namespace DSA.BLL.Services.Contracts
+namespace SAT.BLL.Services.Contracts
 {
     public interface ICustomerService
     {

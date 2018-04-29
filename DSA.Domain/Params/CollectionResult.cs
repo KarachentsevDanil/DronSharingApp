@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DSA.Domain.Params
+namespace SAT.Domain.Params
 {
     public class CollectionResult<T> where T : class
     {

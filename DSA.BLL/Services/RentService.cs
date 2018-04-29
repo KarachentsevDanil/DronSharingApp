@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using DSA.BLL.Dto.Rents;
-using DSA.BLL.Services.Contracts;
-using DSA.DAL.UnitOfWork.Contract;
-using DSA.Domain.Params;
-using DSA.Domain.Rents;
+using SAT.BLL.Dto.Rents;
+using SAT.BLL.Services.Contracts;
+using SAT.DAL.UnitOfWork.Contract;
+using SAT.Domain.Params;
+using SAT.Domain.Rents;
 
-namespace DSA.BLL.Services
+namespace SAT.BLL.Services
 {
     public class RentService : IRentService
     {
-        private readonly IDronSharingUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public RentService(IDronSharingUnitOfWork unitOfWork)
+        public RentService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

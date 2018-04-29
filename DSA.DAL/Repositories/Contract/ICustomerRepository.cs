@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using DSA.Domain.Customers;
+using SAT.Domain.Customers;
 
-namespace DSA.DAL.Repositories.Contract
+namespace SAT.DAL.Repositories.Contract
 {
-    public interface ICustomerRepository : IDronSharingRepository<Customer>
+    public interface ICustomerRepository : IRepository<Customer>
     {
         Customer GetCustomerByTerm(string term);
 

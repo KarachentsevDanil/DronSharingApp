@@ -1,9 +1,9 @@
-﻿using DSA.Domain.Params;
-using DSA.Domain.Rents;
+﻿using SAT.Domain.Params;
+using SAT.Domain.Rents;
 
-namespace DSA.DAL.Repositories.Contract
+namespace SAT.DAL.Repositories.Contract
 {
-    public interface IRentRepository : IDronSharingRepository<Rent>
+    public interface IRentRepository : IRepository<Rent>
     {
         CollectionResult<Rent> GetRentsByParams(RentsFilterParams filterParams);
     }

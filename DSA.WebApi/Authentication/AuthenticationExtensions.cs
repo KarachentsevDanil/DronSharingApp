@@ -1,11 +1,11 @@
-using DSA.DAL.Context;
-using DSA.Domain.Customers;
+using SAT.DAL.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SAT.Domain.Customers;
 
-namespace DSA.WebApi.Authentication
+namespace SAT.WebApi.Authentication
 {
     public static class AuthenticationExtensions
     {
@@ -20,7 +20,7 @@ namespace DSA.WebApi.Authentication
                     o.Password.RequiredLength = 6;
 
                 })
-                .AddEntityFrameworkStores<DronSharingContext>();
+                .AddEntityFrameworkStores<AirTaxiSharingContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

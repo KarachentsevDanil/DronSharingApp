@@ -1,7 +1,7 @@
 ﻿using System;
-using DSA.Domain.Customers;
+using SAT.Domain.Customers;
 
-namespace DSA.BLL.Dto.Customers
+namespace SAT.BLL.Dto.Customers
 {
     public class CustomerRegistrationDto
     {

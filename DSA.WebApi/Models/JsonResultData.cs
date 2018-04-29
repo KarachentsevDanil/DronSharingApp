@@ -1,4 +1,4 @@
-namespace DSA.WebApi.Models
+namespace SAT.WebApi.Models
 {
     public class JsonResultData
     {

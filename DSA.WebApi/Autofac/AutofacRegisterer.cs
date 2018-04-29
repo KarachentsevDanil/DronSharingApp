@@ -7,7 +7,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DSA.WebApi.Autofac
+namespace SAT.WebApi.Autofac
 {
     internal class AutofacRegisterer : IAutofacRegisterer
     {
@@ -21,7 +21,7 @@ namespace DSA.WebApi.Autofac
         public void RegisterModules(IEnumerable<AssemblyName> assemblyNames)
         {
             var assemblies = assemblyNames
-                .Where(name => name.Name.StartsWith("DSA"))
+                .Where(name => name.Name.StartsWith("SAT"))
                 .Distinct()
                 .Select(Assembly.Load);
 

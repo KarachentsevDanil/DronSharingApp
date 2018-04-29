@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using DSA.Domain.Drons;
-using DSA.Domain.Rents;
+using SAT.Domain.Rents;
 using Microsoft.AspNetCore.Identity;
+using SAT.Domain.AirTaxies;
 
-namespace DSA.Domain.Customers
+namespace SAT.Domain.Customers
 {
     public class Customer : IdentityUser
     {
@@ -14,13 +14,13 @@ namespace DSA.Domain.Customers
 
         public DateTime? DateOfBirthsday { get; set; }
 
-        public ICollection<Dron> Drons { get; set; }
+        public ICollection<AirTaxi> Taxies { get; set; }
 
         public ICollection<Rent> Rents { get; set; }
 
         public Customer()
         {
-            Drons = new List<Dron>();
+            Taxies = new List<AirTaxi>();
             Rents = new List<Rent>();
         }
     }

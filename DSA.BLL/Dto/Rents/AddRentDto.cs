@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace DSA.BLL.Dto.Rents
+namespace SAT.BLL.Dto.Rents
 {
     public class AddRentDto
     {
         public string CustomerId { get; set; }
 
-        public int DronId { get; set; }
+        public int AirTaxiId { get; set; }
 
         public DateTime StartDate { get; set; }
 

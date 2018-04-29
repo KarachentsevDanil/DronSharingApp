@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DSA.DAL.Context;
-using DSA.DAL.Repositories.Contract;
-using DSA.Domain.Customers;
+using SAT.DAL.Context;
+using SAT.DAL.Repositories.Contract;
+using SAT.Domain.Customers;
 
-namespace DSA.DAL.Repositories
+namespace SAT.DAL.Repositories
 {
-    public class CustomerRepository : DronSharingRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
-        private readonly DronSharingContext _dbContext;
+        private readonly AirTaxiSharingContext _dbContext;
 
-        public CustomerRepository(DronSharingContext dbContext) : base(dbContext)
+        public CustomerRepository(AirTaxiSharingContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

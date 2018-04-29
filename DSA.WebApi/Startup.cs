@@ -1,6 +1,6 @@
-﻿using DSA.BLL.Mapper;
-using DSA.WebApi.Authentication;
-using DSA.WebApi.Autofac;
+﻿using SAT.BLL.Mapper;
+using SAT.WebApi.Authentication;
+using SAT.WebApi.Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 
-namespace DSA.WebApi
+namespace SAT.WebApi
 {
     public class Startup
     {

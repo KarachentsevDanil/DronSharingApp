@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
-using DSA.BLL.Dto.Customers;
-using DSA.BLL.Services.Contracts;
-using DSA.DAL.UnitOfWork.Contract;
-using DSA.Domain.Customers;
+using SAT.BLL.Dto.Customers;
+using SAT.BLL.Services.Contracts;
+using SAT.DAL.UnitOfWork.Contract;
+using SAT.Domain.Customers;
 
-namespace DSA.BLL.Services
+namespace SAT.BLL.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly IDronSharingUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CustomerService(IDronSharingUnitOfWork unitOfWork)
+        public CustomerService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

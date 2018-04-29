@@ -1,8 +1,8 @@
 ﻿using System;
-using DSA.Domain.Customers;
-using DSA.Domain.Drons;
+using SAT.Domain.AirTaxies;
+using SAT.Domain.Customers;
 
-namespace DSA.Domain.Rents
+namespace SAT.Domain.Rents
 {
     public class Rent
     {
@@ -10,7 +10,7 @@ namespace DSA.Domain.Rents
 
         public string CustomerId { get; set; }
 
-        public int DronId { get; set; }
+        public int AirTaxiId { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -18,6 +18,6 @@ namespace DSA.Domain.Rents
 
         public Customer Customer { get; set; }
 
-        public Dron Dron { get; set; }
+        public AirTaxi AirTaxi { get; set; }
     }
 }

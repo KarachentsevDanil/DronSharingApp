@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DSA.DAL.Context.Mappings.Contract
+namespace SAT.DAL.Context.Mappings.Contract
 {
     public interface IMappingContract<T> where T : class
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace DSA.Domain.Params
+namespace SAT.Domain.Params
 {
     public class FilterParams<T> where T : class
     {

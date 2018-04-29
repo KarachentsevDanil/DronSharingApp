@@ -1,24 +1,24 @@
 using Autofac;
-using DSA.DAL.Context;
-using DSA.DAL.Repositories;
-using DSA.DAL.Repositories.Contract;
-using DSA.DAL.UnitOfWork;
-using DSA.DAL.UnitOfWork.Contract;
+using SAT.DAL.Context;
+using SAT.DAL.Repositories;
+using SAT.DAL.Repositories.Contract;
+using SAT.DAL.UnitOfWork;
+using SAT.DAL.UnitOfWork.Contract;
 
-namespace DSA.WebApi.Modules
+namespace SAT.WebApi.Modules
 {
     public class RepositoriesModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<DronSharingContext>().As<DronSharingContext>().InstancePerLifetimeScope();
+            builder.RegisterType<AirTaxiSharingContext>().As<AirTaxiSharingContext>().InstancePerLifetimeScope();
 
-            builder.RegisterType<DronSharingUnitOfWork>().As<IDronSharingUnitOfWork>().PropertiesAutowired();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().PropertiesAutowired();
             builder.RegisterType<CustomerRepository>().As<ICustomerRepository>();
-            builder.RegisterType<DronRepository>().As<IDronRepository>();
-            builder.RegisterType<DronTypeRepository>().As<IDronTypeRepository>();
-            builder.RegisterType<DronCompanyRepository>().As<IDronCompanyRepository>();
-            builder.RegisterType<DronModelRepository>().As<IDronModelRepository>();
+            builder.RegisterType<AirTaxiRepository>().As<IAirTaxiRepository>();
+            builder.RegisterType<AirTaxiTypeRepository>().As<IAirTaxiTypeRepository>();
+            builder.RegisterType<AirTaxiCompanyRepository>().As<IAirTaxiCompanyRepository>();
+            builder.RegisterType<AirTaxiModelRepository>().As<IAirTaxiModelRepository>();
             builder.RegisterType<RentRepository>().As<IRentRepository>();
         }
     }

@@ -1,18 +1,18 @@
 ﻿using System.Linq;
-using DSA.DAL.Context;
-using DSA.DAL.Repositories.Contract;
-using DSA.Domain.Params;
-using DSA.Domain.Rents;
+using SAT.DAL.Context;
+using SAT.DAL.Repositories.Contract;
+using SAT.Domain.Params;
+using SAT.Domain.Rents;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 
-namespace DSA.DAL.Repositories
+namespace SAT.DAL.Repositories
 {
-    public class RentRepository : DronSharingRepository<Rent>, IRentRepository
+    public class RentRepository : Repository<Rent>, IRentRepository
     {
-        private readonly DronSharingContext _dbContext;
+        private readonly AirTaxiSharingContext _dbContext;
 
-        public RentRepository(DronSharingContext dbContext) : base(dbContext)
+        public RentRepository(AirTaxiSharingContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
@@ -45,10 +45,10 @@ namespace DSA.DAL.Repositories
         private IQueryable<Rent> GetAllRents()
         {
             return _dbContext.Rents
-                .Include(t => t.Dron)
-                .Include(t => t.Dron).ThenInclude(t => t.DronModel)
-                .Include(t => t.Dron).ThenInclude(t => t.DronModel).ThenInclude(t => t.DronCompany)
-                .Include(t => t.Dron).ThenInclude(t => t.DronModel).ThenInclude(t => t.DronType)
+                .Include(t => t.AirTaxi)
+                .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel)
+                .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel).ThenInclude(t => t.Company)
+                .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel).ThenInclude(t => t.Type)
                 .Include(t => t.Customer)
                 .AsQueryable();
         }
@@ -64,12 +64,12 @@ namespace DSA.DAL.Repositories
 
             if (!string.IsNullOrEmpty(filterParams.Term))
             {
-                predicate = predicate.Extend(t => t.Dron.DronModel.Name.Contains(filterParams.Term));
+                predicate = predicate.Extend(t => t.AirTaxi.AirTaxiModel.Name.Contains(filterParams.Term));
             }
 
-            if (filterParams.DronModelId.HasValue)
+            if (filterParams.AirTaxiModelId.HasValue)
             {
-                predicate = predicate.Extend(t => t.Dron.DronModelId == filterParams.DronModelId.Value);
+                predicate = predicate.Extend(t => t.AirTaxi.AirTaxiModelId == filterParams.AirTaxiModelId.Value);
             }
 
             filterParams.Expression = predicate;

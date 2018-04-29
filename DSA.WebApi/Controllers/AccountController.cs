@@ -2,16 +2,16 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DSA.BLL.Dto.Customers;
-using DSA.BLL.Services.Contracts;
-using DSA.Domain.Customers;
-using DSA.WebApi.Authentication;
-using DSA.WebApi.Models;
+using SAT.BLL.Dto.Customers;
+using SAT.BLL.Services.Contracts;
+using SAT.WebApi.Authentication;
+using SAT.WebApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using SAT.Domain.Customers;
 
-namespace DSA.WebApi.Controllers
+namespace SAT.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller

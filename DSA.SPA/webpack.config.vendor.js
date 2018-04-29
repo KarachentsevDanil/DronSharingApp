@@ -18,10 +18,8 @@ module.exports = (env) => {
             ]
         },
         entry: {
-            vendor: ['bootstrap', 'bootstrap/dist/css/bootstrap.css', 'event-source-polyfill', 'vue', 'vuex', 'axios',
-                'vue-router', 'jquery', './ClientApp/assets/font-awesome/css/fontawesome-all.css', 'chart.js/dist/Chart.js',
-                '@fancyapps/fancybox/dist/jquery.fancybox.min.js', '@fancyapps/fancybox/dist/jquery.fancybox.min.css',
-                'underscore']
+            vendor: ['bootstrap', 'event-source-polyfill', 'vue', 'vuex', 'axios',
+                'vue-router', 'jquery', './ClientApp/assets/font-awesome/css/fontawesome-all.css', 'underscore']
         },
         output: {
             path: path.join(__dirname, 'wwwroot', 'dist'),

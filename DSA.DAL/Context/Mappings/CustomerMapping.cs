@@ -1,9 +1,9 @@
-﻿using DSA.DAL.Context.Mappings.Contract;
-using DSA.Domain.Customers;
+﻿using SAT.DAL.Context.Mappings.Contract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SAT.Domain.Customers;
 
-namespace DSA.DAL.Context.Mappings
+namespace SAT.DAL.Context.Mappings
 {
     public class CustomerMapping : IMappingContract<Customer>
     {

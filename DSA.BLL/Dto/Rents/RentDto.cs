@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DSA.BLL.Dto.Rents
+namespace SAT.BLL.Dto.Rents
 {
     public class RentDto
     {
@@ -10,19 +10,19 @@ namespace DSA.BLL.Dto.Rents
 
         public string CustomerName { get; set; }
 
-        public int DronId { get; set; }
+        public int AirTaxiId { get; set; }
 
-        public string DronModel { get; set; }
+        public string AirTaxiModel { get; set; }
 
-        public string DronType { get; set; }
+        public string AirTaxiType { get; set; }
 
-        public string DronCompany { get; set; }
+        public string AirTaxiCompany { get; set; }
         
-        public double DronDailyCosts { get; set; }
+        public double AirTaxiDailyCosts { get; set; }
 
-        public string DronPhoto { get; set; }
+        public string AirTaxiPhoto { get; set; }
 
-        public string DronDescription { get; set; }
+        public string AirTaxiDescription { get; set; }
 
         public DateTime StartDate { get; set; }
 

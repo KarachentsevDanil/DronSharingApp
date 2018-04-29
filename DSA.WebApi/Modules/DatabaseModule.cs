@@ -1,26 +1,26 @@
 using Autofac;
-using DSA.DAL.Context;
+using SAT.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace DSA.WebApi.Modules
+namespace SAT.WebApi.Modules
 {
     public class DatabaseModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(CreateDbContextOptions).As<DbContextOptions<DronSharingContext>>();
+            builder.Register(CreateDbContextOptions).As<DbContextOptions<AirTaxiSharingContext>>();
         }
 
-        private static DbContextOptions<DronSharingContext> CreateDbContextOptions(IComponentContext context)
+        private static DbContextOptions<AirTaxiSharingContext> CreateDbContextOptions(IComponentContext context)
         {
             var configuration = context.Resolve<IConfiguration>();
             string connectionString = configuration["Data:DefaultConnection:ConnectionString"];
 
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<DronSharingContext>();
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder<AirTaxiSharingContext>();
             dbContextOptionsBuilder.UseSqlServer(connectionString);
 
-            using (var dbContext = new DronSharingContext(dbContextOptionsBuilder.Options))
+            using (var dbContext = new AirTaxiSharingContext(dbContextOptionsBuilder.Options))
             {
                 dbContext.Database.EnsureCreated();
             }
