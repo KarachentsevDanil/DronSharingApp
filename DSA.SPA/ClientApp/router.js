@@ -1,20 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import LoginPage from "./pages/auth/pages/login";
+import HomePage from './pages/layout/home-page'
+// import LoginPage from "./pages/auth/pages/login";
 
-import authorizationRoutes from "./routes/authorizationRoutes";
-import gameRoutes from "./routes/gameRoutes";
-import orderRoutes from "./routes/orderRoutes";
+// import authorizationRoutes from "./routes/authorizationRoutes";
+// import orderRoutes from "./routes/orderRoutes";
 
 Vue.use(VueRouter);
 
 const routes = [
-    ...authorizationRoutes,
-    ...gameRoutes,
-    ...orderRoutes,
+    // ...authorizationRoutes,
+    // ...gameRoutes,
+    // ...orderRoutes,
     {
         path: "*",
-        component: LoginPage
+        component: HomePage
     }
 ];
 

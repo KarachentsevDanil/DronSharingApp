@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import axios from 'axios'
 import router from './router'
 import store from './store'
@@ -20,7 +19,6 @@ Vue.prototype.$http = axios;
 
 sync(store, router);
 
-Vue.use(Vuetify);
 Vue.use(VueNoty);
 Vue.use(BlockUI);
 
