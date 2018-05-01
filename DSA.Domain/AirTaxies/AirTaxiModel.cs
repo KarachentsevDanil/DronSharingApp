@@ -20,11 +20,11 @@ namespace SAT.Domain.AirTaxies
 
         public int MaximumRangeFlight { get; set; }
 
-        public AirTaxiCompany Company { get; set; }
+        public virtual AirTaxiCompany Company { get; set; }
 
-        public AirTaxiType Type { get; set; }
+        public virtual AirTaxiType Type { get; set; }
         
-        public ICollection<AirTaxi> AirTaxies { get; set; }
+        public virtual ICollection<AirTaxi> AirTaxies { get; set; }
 
         public AirTaxiModel()
         {

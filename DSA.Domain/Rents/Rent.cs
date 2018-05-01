@@ -16,8 +16,8 @@ namespace SAT.Domain.Rents
 
         public DateTime EndDate { get; set; }
 
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
-        public AirTaxi AirTaxi { get; set; }
+        public virtual AirTaxi AirTaxi { get; set; }
     }
 }

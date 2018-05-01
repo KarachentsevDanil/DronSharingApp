@@ -3,15 +3,16 @@ import VueRouter from "vue-router";
 import HomePage from './pages/layout/home-page'
 // import LoginPage from "./pages/auth/pages/login";
 
-// import authorizationRoutes from "./routes/authorizationRoutes";
-// import orderRoutes from "./routes/orderRoutes";
+import authorizationRoutes from "./routes/authorization-routes";
+import airTaxiRoutes from "./routes/air-taxi-routes";
+import rentRoutes from "./routes/rent-routes";
 
 Vue.use(VueRouter);
 
 const routes = [
-    // ...authorizationRoutes,
-    // ...gameRoutes,
-    // ...orderRoutes,
+    ...authorizationRoutes,
+    ...airTaxiRoutes,
+    ...rentRoutes,
     {
         path: "*",
         component: HomePage

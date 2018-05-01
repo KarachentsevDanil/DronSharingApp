@@ -14,9 +14,9 @@ namespace SAT.Domain.Customers
 
         public DateTime? DateOfBirthsday { get; set; }
 
-        public ICollection<AirTaxi> Taxies { get; set; }
+        public virtual ICollection<AirTaxi> Taxies { get; set; }
 
-        public ICollection<Rent> Rents { get; set; }
+        public virtual ICollection<Rent> Rents { get; set; }
 
         public Customer()
         {

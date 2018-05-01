@@ -8,7 +8,7 @@ namespace SAT.Domain.AirTaxies
 
         public string Name { get; set; }
 
-        public ICollection<AirTaxiModel> TaxiModels { get; set; }
+        public virtual ICollection<AirTaxiModel> TaxiModels { get; set; }
 
         public AirTaxiCompany()
         {

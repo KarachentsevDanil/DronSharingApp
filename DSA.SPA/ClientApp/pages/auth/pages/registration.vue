@@ -1,72 +1,67 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 col-sm-12 authorization-block">
-                <v-card class="form-sign-block">
-                    <div class="form-header deep-purple darken-1">
-                        <v-card-title class="white--text deep-purple darken-1">
-                            <span class="text-xs-center">
-                                {{ labels.headers.resitrationLabel }}
-                            </span>
-                        </v-card-title>
-                    </div>
-                    <div class="form-body">
-                        <form>
-                            <v-text-field :label="labels.properties.fullNameLabel"
-                                          v-model="user.fullName"
-                                          :error-messages="fullNameErrors"
-                                          @input="$v.user.fullName.$touch()"
-                                          @blur="$v.user.fullName.$touch()"
-                                          required></v-text-field>
+    <div>
+          <div class="panel panel-body login-form">
+            <div class="text-center">
+                <div class="icon-object border-success text-success">
+                    <i class="icon-plus3"></i>
+                </div>
+                <h5 class="content-group">Create account <small class="display-block">All fields are required</small></h5>
+            </div>
 
-                            <v-text-field :label="labels.properties.emailLable"
+            <div class="content-divider text-muted form-group">
+                <span>Your credentials</span>
+            </div>
+
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" :placeholder="labels.properties.emailLable"
                                           v-model="user.email"
                                           :error-messages="emailErrors"
                                           @input="$v.user.email.$touch()"
                                           @blur="$v.user.email.$touch()"
-                                          required></v-text-field>
+                                          required>
 
-                            <v-text-field v-model="user.password"
-                                          :error-messages="passwordErrors"
-                                          :label="labels.properties.passwordLabel"
-                                          hint="At least 6 characters"
-                                          min="6"
-                                          @input="$v.user.password.$touch()"
-                                          @blur="$v.user.password.$touch()"
-                                          :type="'password'"
-                                          required></v-text-field>
-
-                            <v-menu ref="menu"
-                                    lazy
-                                    :close-on-content-click="false"
-                                    v-model="menu"
-                                    transition="scale-transition"
-                                    offset-y
-                                    full-width
-                                    :nudge-right="40"
-                                    min-width="290px"
-                                    :return-value.sync="user.birthday">
-                                <v-text-field slot="activator"
-                                              label="Picker in menu"
-                                              v-model="user.birthday"
-                                              prepend-icon="event"
-                                              readonly></v-text-field>
-                                <v-date-picker v-model="user.birthday" no-title scrollable>
-                                    <v-spacer></v-spacer>
-                                    <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                                    <v-btn flat color="primary" @click="$refs.menu.save(user.birthday)">OK</v-btn>
-                                </v-date-picker>
-                            </v-menu>
-
-                            <v-btn class="form-button" :disabled="isInvaild" @click="submit" color="info">{{labels.commands.registrLabel}}</v-btn>
-                        </form>
-                    </div>
-                </v-card>
-
-                <div class="registr-link-block">
-                    {{labels.commands.haveAccountLabel}} <router-link to="/login" active-class="active" exact><a>{{labels.commands.signInLabel}}</a></router-link>
+                <div class="form-control-feedback">
+                    <i class="icon-user text-muted"></i>
                 </div>
             </div>
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="text" class="form-control" :placeholder="labels.properties.fullNameLabel"
+                                          v-model="user.fullName"
+                                          :error-messages="fullNameErrors"
+                                          @input="$v.user.fullName.$touch()"
+                                          @blur="$v.user.fullName.$touch()"
+                                          required>
+
+                <div class="form-control-feedback">
+                     <i class="icon-user text-muted"></i>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="text" asp-for="LastName" class="form-control" placeholder="Last name">
+                <div class="form-control-feedback">
+                     <i class="icon-user text-muted"></i>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback has-feedback-left">
+                <input type="password" class="form-control" v-model="user.password"
+                                          :error-messages="passwordErrors"
+                                          :placeholder="labels.properties.passwordLabel"
+                                          @input="$v.user.password.$touch()"
+                                          @blur="$v.user.password.$touch()"
+                                          required>
+                <div class="form-control-feedback">
+                    <i class="icon-user-lock text-muted"></i>
+                </div>
+            </div>
+             <div class="form-group">
+                <button type="submit" :disabled="isInvaild" @click="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+             </div>
+            <div class="content-divider text-muted form-group"><span>{{labels.commands.haveAccountLabel}}</span></div>
+            <router-link to="/login" class="btn btn-default btn-block content-group">{{labels.commands.signInLabel}}</router-link>
         </div>
     </div>
 </template>

@@ -1,6 +1,8 @@
 import axios from "axios";
 import router from "../router";
 
+const baseApiUrl = "http://localhost:53689/";
+
 axios.interceptors.response.use(
     response => {
         return response;
@@ -29,10 +31,10 @@ let getHeaders = () => {
 
 export const getData = params => {
     const headers = getHeaders();
-    return axios.get(params.url, headers);
+    return axios.get(baseApiUrl + params.url, headers);
 };
 
 export const postData = params => {
     const headers = getHeaders();
-    return axios.post(params.url, params.data, headers);
+    return axios.postbaseApiUrl + params.url, params.data, headers);
 };

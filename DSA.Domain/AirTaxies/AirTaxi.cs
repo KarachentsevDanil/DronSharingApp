@@ -14,11 +14,11 @@ namespace SAT.Domain.AirTaxies
 
         public double DailyCosts { get; set; }
 
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
-        public AirTaxiModel AirTaxiModel { get; set; }
+        public virtual AirTaxiModel AirTaxiModel { get; set; }
 
-        public ICollection<Rent> Rents { get; set; }
+        public virtual ICollection<Rent> Rents { get; set; }
 
         public AirTaxi()
         {

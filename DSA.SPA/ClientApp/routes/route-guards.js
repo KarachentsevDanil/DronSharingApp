@@ -15,32 +15,14 @@ let validateToken = () => {
     return !isTokenExpire;
 };
 
-export const validateAdminRoute = (to, from, next) => {
+export const validateRoute = (to, from, next) => {
     let isTokenValid = validateToken();
 
     if (isTokenValid) {
         let user = !localStorage.user ? "" : $.parseJSON(localStorage.user);
 
-        if (user && user.Role === "Admin") {
+        if (user) {
             next();
-        } else {
-            next("/login");
-        }
-    } else {
-        next("/login");
-    }
-};
-
-export const validateUserRoute = (to, from, next) => {
-    let isTokenValid = validateToken();
-
-    if (isTokenValid) {
-        let user = !localStorage.user ? "" : $.parseJSON(localStorage.user);
-
-        if (user && user.Role === "User") {
-            next();
-        } else if (user && user.Role === "Admin") {
-            next("/edit-games");
         } else {
             next("/login");
         }
@@ -52,10 +34,8 @@ export const validateUserRoute = (to, from, next) => {
 export const redirectToHomePage = (to, from, next) => {
     let user = !localStorage.user ? "" : $.parseJSON(localStorage.user);
 
-    if (user && user.Role === "User") {
-        next("/games");
-    } else if (user && user.Role === "Admin") {
-        next("/edit-games");
+    if (user) {
+        next("/home");
     } else {
         next();
     }
