@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SAT.BLL.Dto.AirTaxies;
+using SAT.Domain.Params;
 
 namespace SAT.WebApi.Controllers
 {
@@ -28,7 +29,14 @@ namespace SAT.WebApi.Controllers
         [HttpGet]
         public IActionResult GetAirTaxiCompanies(string company)
         {
-            var companies = _airTaxiCompanyService.GetAirTaxiCompanies(company);
+            var companies = _airTaxiCompanyService.GetAirTaxiCompanies(company ?? string.Empty);
+            return Json(JsonResultData.Success(companies));
+        }
+
+        [HttpPost]
+        public IActionResult GetAirTaxiCompaniesByParams([FromBody] CompaniesFilterParams filterParams)
+        {
+            var companies = _airTaxiCompanyService.GetAirTaxiCompaniesByParams(filterParams);
             return Json(JsonResultData.Success(companies));
         }
     }

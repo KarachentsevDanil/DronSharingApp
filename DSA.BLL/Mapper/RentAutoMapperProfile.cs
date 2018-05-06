@@ -15,7 +15,8 @@ namespace SAT.BLL.Mapper
                 .ForMember(x => x.AirTaxiType, t => t.MapFrom(p => p.AirTaxi.AirTaxiModel.Type.Name))
                 .ForMember(x => x.AirTaxiDescription, t => t.MapFrom(p => p.AirTaxi.AirTaxiModel.Description))
                 .ForMember(x => x.AirTaxiDailyCosts, t => t.MapFrom(p => p.AirTaxi.DailyCosts))
-                .ForMember(x => x.RentDaysCount, t => t.MapFrom(p => (p.EndDate - p.StartDate).Days));
+                .ForMember(x => x.RentDaysCount, t => t.MapFrom(p => (p.EndDate - p.StartDate).Days))
+                .ForMember(x => x.AirTaxiPhoto, t => t.Ignore());
 
             CreateMap<AddRentDto, Rent>()
                 .ForMember(x => x.RentId, t => t.Ignore())

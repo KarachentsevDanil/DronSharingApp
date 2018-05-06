@@ -29,7 +29,7 @@ namespace SAT.DAL.Repositories
 
         private void FillAirTaxiQueryParams(TaxiesFilterParams filterParams)
         {
-            var predicate = PredicateBuilder.New<AirTaxi>();
+            var predicate = PredicateBuilder.True<AirTaxi>();
 
             if (!string.IsNullOrEmpty(filterParams.CustomerId))
             {
@@ -70,8 +70,8 @@ namespace SAT.DAL.Repositories
             var totalCount = airTaxies.Count();
 
             var result = airTaxies
-                .Skip(filterParams.PageSize * (filterParams.PageNumber - 1))
-                .Take(filterParams.PageSize == 0 ? int.MaxValue : filterParams.PageSize)
+                .Skip(filterParams.Skip)
+                .Take(filterParams.Take)
                 .AsNoTracking()
                 .ToList();
 

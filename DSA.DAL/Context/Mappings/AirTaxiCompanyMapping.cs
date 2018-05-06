@@ -9,7 +9,7 @@ namespace SAT.DAL.Context.Mappings
     {
         public void MapEntity(EntityTypeBuilder<AirTaxiCompany> builder)
         {
-            builder.ToTable("AirTaxiCompanys", "core");
+            builder.ToTable("AirTaxiCompanies", "core");
 
             builder.HasKey(x => x.AirTaxiCompanyId);
         }

@@ -36,5 +36,5 @@ export const getData = params => {
 
 export const postData = params => {
     const headers = getHeaders();
-    return axios.postbaseApiUrl + params.url, params.data, headers);
+    return axios.post(baseApiUrl + params.url, params.data, headers);
 };

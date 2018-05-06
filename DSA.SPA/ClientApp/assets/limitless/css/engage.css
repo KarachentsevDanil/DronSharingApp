@@ -22,7 +22,7 @@ div[name="Datatable"] div.row {
 }
 
 .without-header div[name="SimpleTable"] {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 /*Icons*/

@@ -20,9 +20,9 @@ namespace SAT.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAirTaxi([FromBody] AddAirTaxiDto dron)
+        public IActionResult AddAirTaxi([FromBody] AddAirTaxiDto taxi)
         {
-            _airTaxiService.AddAirTaxi(dron);
+            _airTaxiService.AddAirTaxi(taxi);
             return Json(JsonResultData.Success());
         }
 

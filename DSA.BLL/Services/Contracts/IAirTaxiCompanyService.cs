@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SAT.BLL.Dto.AirTaxies;
+using SAT.Domain.Params;
 
 namespace SAT.BLL.Services.Contracts
 {
@@ -8,5 +9,7 @@ namespace SAT.BLL.Services.Contracts
         void AddAirTaxiCompany(AddAirTaxiCompanyDto data);
 
         IEnumerable<AirTaxiCompanyDto> GetAirTaxiCompanies(string term);
+
+        CollectionResult<AirTaxiCompanyDto> GetAirTaxiCompaniesByParams(CompaniesFilterParams filterParams);
     }
 }

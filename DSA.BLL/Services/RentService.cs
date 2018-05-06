@@ -20,6 +20,7 @@ namespace SAT.BLL.Services
         {
             var newRent = AutoMapper.Mapper.Map<AddRentDto, Rent>(data);
             _unitOfWork.RentRepository.Add(newRent);
+            _unitOfWork.Commit();
         }
 
         public CollectionResult<RentDto> GetRentsByParams(RentsFilterParams filterParams)

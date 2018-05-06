@@ -40,13 +40,6 @@
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input type="text" asp-for="LastName" class="form-control" placeholder="Last name">
-                <div class="form-control-feedback">
-                     <i class="icon-user text-muted"></i>
-                </div>
-            </div>
-
-            <div class="form-group has-feedback has-feedback-left">
                 <input type="password" class="form-control" v-model="user.password"
                                           :error-messages="passwordErrors"
                                           :placeholder="labels.properties.passwordLabel"

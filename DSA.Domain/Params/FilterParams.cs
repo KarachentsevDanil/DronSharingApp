@@ -5,9 +5,9 @@ namespace SAT.Domain.Params
 {
     public class FilterParams<T> where T : class
     {
-        public int PageSize { get; set; } = 25;
+        public int Take { get; set; } = 25;
 
-        public int PageNumber { get; set; } = 1;
+        public int Skip { get; set; } = 0;
 
         public Expression<Func<T, bool>> Expression { get; set; }
     }

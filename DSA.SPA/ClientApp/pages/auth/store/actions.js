@@ -5,7 +5,7 @@ import * as authResources from "../resources/resources";
 export default {
     async login(context, data) {
         let userDate = await authenticationService.login(data.user);
-
+        
         if (!userDate.data.ErrorMessage) {
             let token = {
                 value: userDate.data.token,
@@ -14,7 +14,7 @@ export default {
 
             context.commit(mutations.SET_TOKEN_MUTATOR, token);
             context.commit(mutations.SET_USER_MUTATOR, userDate.data.user);
-            data.router.push("/games");
+            data.router.push("/taxies");
         } else {
             data.notification.error(
                 authResources.popupMessages.loginFailedMessage

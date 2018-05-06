@@ -1,11 +1,98 @@
 <template>
-  <div>
-      Company List
-  </div>
+    <div>
+        <div class="page-header">
+            <div class="page-header-content">
+                <div class="page-title">
+                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold">Company List</span></h4>
+
+                    <ul class="breadcrumb position-right">
+                        <li><a>Air Taxies</a></li>
+                        <li class="active">Comapny List</li>
+                    </ul>
+                    <a class="heading-elements-toggle"><i class="icon-more"></i></a><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                </div>
+                <div class="heading-elements">
+                        <div class="heading-btn-group">
+                            <a href="#" class="btn bg-blue btn-labeled heading-btn legitRipple" data-toggle="modal" data-target="#addCompany">
+                                <b><i class="icon-plus2"></i></b> Add Company
+                            </a>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="panel panel-flat without-header">
+                <datatable v-bind="$data" :HeaderSettings="false" />
+            </div>
+        </div>
+        <add-new-company :refreshCompanyList="getCompanies"/>
+    </div>
 </template>
 
 <script>
+import * as companyService from "../api/company-service";
+
+import companyActionCell from "./components/company-action-cell";
+import addNewCompany from './components/add-new-company';
+
+import Vue from "Vue";
+
 export default {
-  
-}
+  components: {
+    companyActionCell: companyActionCell,
+    addNewCompany: addNewCompany
+  },
+  data: () => ({
+    tblClass: "grid-table",
+    pageSizeOptions: [10, 25, 50, 100],
+    columns: [
+      {
+        title: "Id",
+        field: "AirTaxiCompanyId",
+        sortable: false,
+        tdStyle: { width: "10%" }
+      },
+      {
+        title: "Company Name",
+        field: "Name",
+        sortable: false,
+        tdStyle: { width: "50%" }
+      },
+      {
+        title: "Actions",
+        tdComp: "companyActionCell",
+        thStyle: { textAlign: "center" },
+        tdStyle: { width: "40%" }
+      }
+    ],
+    data: [],
+    total: 0,
+    query: {},
+    xprops: {
+      eventbus: new Vue()
+    }
+  }),
+  watch: {
+    query: {
+      async handler() {
+        await this.getCompanies();
+      },
+      deep: true
+    }
+  },
+  methods: {
+    async getCompanies() {
+      let params = {
+        skip: this.query.offset,
+        take: this.query.limit
+      };
+
+      let data = (await companyService.getCompaniesByParams(params)).data.Data;
+
+      this.data = data.Collection;
+      this.total = data.TotalCount;
+    }
+  }
+};
 </script>

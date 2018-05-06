@@ -20,6 +20,7 @@ namespace SAT.BLL.Services
         {
             var newAirTaxi = AutoMapper.Mapper.Map<AddAirTaxiDto, AirTaxi>(data);
             _unitOfWork.AirTaxiRepository.Add(newAirTaxi);
+            _unitOfWork.Commit();
         }
 
         public CollectionResult<AirTaxiDto> GetAirTaxiesByParams(TaxiesFilterParams filterParams)

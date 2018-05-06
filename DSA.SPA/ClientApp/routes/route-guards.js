@@ -35,7 +35,7 @@ export const redirectToHomePage = (to, from, next) => {
     let user = !localStorage.user ? "" : $.parseJSON(localStorage.user);
 
     if (user) {
-        next("/home");
+        next("/taxies");
     } else {
         next();
     }

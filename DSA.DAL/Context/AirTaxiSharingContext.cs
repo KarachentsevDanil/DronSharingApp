@@ -20,7 +20,7 @@ namespace SAT.DAL.Context
 
         public DbSet<AirTaxiType> AirTaxiTypes { get; set; }
 
-        public DbSet<AirTaxiCompany> AirTaxiCompanys { get; set; }
+        public DbSet<AirTaxiCompany> AirTaxiCompany { get; set; }
 
         public DbSet<Rent> Rents { get; set; }
 

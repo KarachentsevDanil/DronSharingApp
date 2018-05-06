@@ -28,8 +28,8 @@ namespace SAT.DAL.Repositories
             var totalCount = rents.Count();
 
             var result = rents
-                .Skip(filterParams.PageSize * (filterParams.PageNumber - 1))
-                .Take(filterParams.PageSize == 0 ? int.MaxValue : filterParams.PageSize)
+                .Skip(filterParams.Skip)
+                .Take(filterParams.Take)
                 .AsNoTracking()
                 .ToList();
 
@@ -55,7 +55,7 @@ namespace SAT.DAL.Repositories
 
         private void FillRentQueryParams(RentsFilterParams filterParams)
         {
-            var predicate = PredicateBuilder.New<Rent>();
+            var predicate = PredicateBuilder.True<Rent>();
 
             if (!string.IsNullOrEmpty(filterParams.CustomerId))
             {

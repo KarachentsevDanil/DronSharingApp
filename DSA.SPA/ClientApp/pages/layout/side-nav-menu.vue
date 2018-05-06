@@ -5,14 +5,13 @@
             <div class="sidebar-user-material">
                 <div class="category-content">
                     <div class="sidebar-user-material-content">
-                        <a href="#" :class="{'btn bg-teal-400 btn-rounded btn-icon btn-xs':!user.photo}" class="legitRipple">
-                            <img v-if="user.photo" :src="user.photo" class="img-circle img-xs">
-                            <span v-else>
-                                {{user.icon}}
+                        <a class="btn bg-teal-400 btn-rounded btn-icon btn-xs legitRipple">
+                            <span>
+                                {{getNameIncon}}
                             </span>
                         </a>
-                        <h6 class="user-name">{{user.name}}</h6>
-                        <span class="text-size-small">{{user.email}}</span>
+                        <h6 class="user-name">{{getUsername.FullName}}</h6>
+                        <span class="text-size-small">{{getUsername.Email}}</span>
                     </div>
 
                     <div class="sidebar-user-material-menu">
@@ -38,7 +37,7 @@
                         </li> -->
                         <li class="divider"></li>
                         <li>
-                            <a href="#" class="legitRipple" v-on:click="logout">
+                            <a class="legitRipple" v-on:click="logout">
                                 <i class="icon-exit"></i>
                                 <span>Logout</span>
                             </a>
@@ -50,7 +49,7 @@
                 <div class="category-content no-padding">
                     <ul class="navigation navigation-main navigation-accordion">
                         <li class="navigation-header"><span>Air Taxi Sharing Portal</span> <i class="icon-menu" title="" data-original-title="Main pages"></i></li>
-                        <li :class="{'active': isPanelActive(item)}" v-for="item in airTaxiItems" :key="item.title">
+                        <li :class="{'active': isPanelActive(item)}" v-for="item in getNavbarItems" :key="item.title">
                             <router-link active-class="active" :class="{'legitRipple':true,'has-ul':item.children.length}" :to="item.url">
                                 <i :class="[item.icon]"></i>
                                 <span>
@@ -73,15 +72,17 @@
 </template>
 
 <script>
+import * as authGetters from "../auth/store/types/getter-types";
+import * as authActions from "../auth/store/types/action-types";
+import * as authResources from "../auth/store/resources";
+import { mapGetters } from "vuex";
+
+import * as mainStoreGetters from "../../store/types/action-types";
+
 export default {
   data() {
     return {
-      user: {
-        name: "Daniel Karachentsev",
-        email: "flyling0897@gmail.com",
-        icon: "DK"
-      },
-      airTaxiItems: [
+      adminTaxiItems: [
         {
           title: "Air Taxi",
           icon: "icon-users2",
@@ -111,17 +112,67 @@ export default {
           url: "",
           children: [
             {
+              title: "Rents List",
+              url: "/rent-list"
+            }
+          ]
+        }
+      ],
+      userTaxiItems: [
+        {
+          title: "Air Taxi",
+          icon: "icon-users2",
+          url: "",
+          children: [
+            {
+              title: "Model List",
+              url: "/taxi-models"
+            },
+            {
+              title: "My Taxy List",
+              url: "/taxies"
+            }
+          ]
+        },
+        {
+          title: "Rents",
+          icon: "icon-cog3",
+          url: "",
+          children: [
+            {
               title: "Rent Taxi",
               url: "/rent-taxi"
             },
             {
-              title: "Rents List",
+              title: "My Rents List",
               url: "/rent-list"
             }
           ]
         }
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      getUsername: authResources.AUTH_STORE_NAMESPACE.concat(
+        authGetters.GET_USER_GETTER
+      )
+    }),
+    getNameIncon() {
+      let data = this.getUsername.FullName;
+      let icon = data.split(" ");
+
+      if (icon.length > 1) {
+        return icon[0][0] + icon[1][0];
+      }
+
+      return icon[0][0] + icon[0][1];
+    },
+    getNavbarItems() {
+      let role = this.getUsername.Role;
+    
+      return role == "User" ? this.userTaxiItems : this.adminTaxiItems;
+    }
   },
   methods: {
     isPanelActive(item) {
@@ -137,8 +188,12 @@ export default {
 
       return isActive;
     },
-    logout: async function(event) {
-      window.location.href = "/Account/Login";
+    logout() {
+      this.$store.dispatch(
+        authResources.AUTH_STORE_NAMESPACE.concat(authActions.LOGOUT_ACTION)
+      );
+
+      this.$router.push("/login");
     }
   }
   // props: {

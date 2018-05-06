@@ -10,6 +10,10 @@ import StarRating from 'vue-star-rating'
 import vue2Dropzone from 'vue2-dropzone'
 import VueNoty from 'vuejs-noty'
 
+import Datatable from 'vue2-datatable-component';
+import grid from './pages/plugins/datatable/datatable';
+import select2 from './pages/plugins/select2/select2'
+
 import App from './pages/layout/app-root'
 
 import 'vue2-dropzone/dist/vue2Dropzone.css'
@@ -21,11 +25,14 @@ sync(store, router);
 
 Vue.use(VueNoty);
 Vue.use(BlockUI);
+Vue.use(Datatable);
 
 Vue.component('pagination', pagination);
 Vue.component('vueDropzone', vue2Dropzone);
 Vue.component('vueSlider', vueSlider);
 Vue.component('starRating', StarRating);
+Vue.component('grid', grid);
+Vue.component('select2', select2);
 
 const app = new Vue({
     store,
