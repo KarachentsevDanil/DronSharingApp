@@ -33,27 +33,32 @@ namespace SAT.DAL.Repositories
 
             if (!string.IsNullOrEmpty(filterParams.CustomerId))
             {
-                predicate = predicate.Extend(t => t.CustomerId == filterParams.CustomerId);
+                predicate = predicate.And(t => t.CustomerId == filterParams.CustomerId);
             }
 
             if (!string.IsNullOrEmpty(filterParams.Term))
             {
-                predicate = predicate.Extend(t => t.AirTaxiModel.Name.Contains(filterParams.Term));
+                predicate = predicate.And(t => t.AirTaxiModel.Name.Contains(filterParams.Term));
             }
 
-            if (filterParams.AirTaxiModelId.HasValue)
+            if (filterParams.SelectedTypeIds != null && filterParams.SelectedTypeIds.Any())
             {
-                predicate = predicate.Extend(t => t.AirTaxiModelId == filterParams.AirTaxiModelId.Value);
+                predicate = predicate.And(t => filterParams.SelectedTypeIds.Any(id => id == t.AirTaxiModel.AirTaxiTypeId));
             }
 
-            if (filterParams.AirTaxiCompanyId.HasValue)
+            if (filterParams.SelectedCompanyIds != null && filterParams.SelectedCompanyIds.Any())
             {
-                predicate = predicate.Extend(t => t.AirTaxiModel.AirTaxiCompanyId == filterParams.AirTaxiCompanyId.Value);
+                predicate = predicate.And(t => filterParams.SelectedCompanyIds.Any(id => id == t.AirTaxiModel.AirTaxiCompanyId));
             }
 
-            if (filterParams.AirTaxiTypeId.HasValue)
+            if (filterParams.SelectedModelIds != null && filterParams.SelectedModelIds.Any())
             {
-                predicate = predicate.Extend(t => t.AirTaxiModel.AirTaxiTypeId == filterParams.AirTaxiTypeId.Value);
+                predicate = predicate.And(t => filterParams.SelectedModelIds.Any(id => id == t.AirTaxiModelId));
+            }
+
+            if (filterParams.StartDate.HasValue && filterParams.EndDate.HasValue)
+            {
+                predicate = predicate.And(t => !t.Rents.Any() || !(t.Rents.Any(r=> filterParams.StartDate.Value <= r.EndDate && filterParams.EndDate.Value >= r.StartDate)));
             }
 
             filterParams.Expression = predicate;

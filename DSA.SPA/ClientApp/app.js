@@ -9,6 +9,7 @@ import BlockUI from 'vue-blockui'
 import StarRating from 'vue-star-rating'
 import vue2Dropzone from 'vue2-dropzone'
 import VueNoty from 'vuejs-noty'
+import Datetime from 'vue-datetime'
 
 import Datatable from 'vue2-datatable-component';
 import grid from './pages/plugins/datatable/datatable';
@@ -18,6 +19,7 @@ import App from './pages/layout/app-root'
 
 import 'vue2-dropzone/dist/vue2Dropzone.css'
 import 'vuejs-noty/dist/vuejs-noty.css'
+import 'vue-datetime/dist/vue-datetime.css'
 
 Vue.prototype.$http = axios;
 
@@ -26,6 +28,7 @@ sync(store, router);
 Vue.use(VueNoty);
 Vue.use(BlockUI);
 Vue.use(Datatable);
+Vue.use(Datetime);
 
 Vue.component('pagination', pagination);
 Vue.component('vueDropzone', vue2Dropzone);

@@ -43,21 +43,43 @@
 									</div>
 
 									<div class="panel-body">
-										<form action="#">
+										<div>
 											<div class="form-group">
-												<div class="has-feedback has-feedback-left">
-													<input type="search" class="form-control" placeholder="Model name or keywords">
-													<div class="form-control-feedback">
-														<i class="icon-reading text-size-large text-muted"></i>
-													</div>
-												</div>
-											</div>
+                      <label>Company: </label>
+                      <select2 style="width: 100%;"
+                             :configuration="companySelectConfiguration"
+                             :options="companies"
+                             v-model="selectedCompanies"></select2>
+                    </div>
+                     <div class="form-group">
+                      <label>Taxi Type: </label>
+                      <select2 style="width: 100%;"
+                             :configuration="typeSelectConfiguration"
+                             :options="types"
+                             v-model="selectedTypes"></select2>
+                    </div>
+                    <div class="form-group">
+                      <label>Taxi Models: </label>
+                      <select2 style="width: 100%;"
+                             :configuration="taxiModelSelectConfiguration"
+                             :options="filterModels"
+                             :disabled="!selectedCompanies.length"
+                             v-model="selectedModels"></select2>
+                    </div>
+										<div class="form-group">
+                      <label>Start Date: </label>
+                      <datetime input-class="form-control" v-model="startDate"></datetime>
+                    </div>
+										<div class="form-group">
+                      <label>End Date: </label>
+                      <datetime input-class="form-control" v-model="endDate"></datetime>
+                    </div>
 
-											<button type="submit" class="btn bg-blue btn-block">
+											<button class="btn bg-blue btn-block" @click="filterTaxies">
 												<i class="icon-search text-size-base position-left"></i>
 												Find Taxies
 											</button>
-										</form>
+										</div>
 									</div>
 								</div>
 
@@ -75,7 +97,8 @@
 								<li class="media panel panel-body stack-media-on-mobile" v-for="taxi in taxies" :key="taxi.AirTaxiId">
 									<div class="media-left">
 										<a href="#">
-											<img src="../../../../assets/limitless/images/cover.jpg" class="img-rounded img-lg" alt="">
+											<img v-if="taxi.AirTaxiPhoto" :src="taxi.AirTaxiPhoto" class="img-rounded img-lg icon-taxi-image" alt="">
+											<img v-else src="../../../../assets/limitless/images/defaultCar.jpg" class="img-rounded img-lg icon-taxi-image" alt="">
 										</a>
 									</div>
 
@@ -117,10 +140,51 @@
 
 <script>
 import * as taxiService from "../../../air-taxi/pages/taxi/api/taxi-service";
+
+const iconFormat = el => {
+  return el.text;
+};
+
 export default {
   data() {
     return {
       taxies: [],
+      types: [],
+      companies: [],
+      models: [],
+      loadedModels: [],
+      selectedTypes: [],
+      selectedCompanies: [],
+      selectedModels: [],
+      startDate: "",
+      endDate: "",
+      companySelectConfiguration: {
+        placeholder: "Select a companies...",
+        multiple: true,
+        templateResult: iconFormat,
+        templateSelection: iconFormat,
+        escapeMarkup: function(m) {
+          return m;
+        }
+      },
+      typeSelectConfiguration: {
+        placeholder: "Select a types...",
+        multiple: true,
+        templateResult: iconFormat,
+        templateSelection: iconFormat,
+        escapeMarkup: function(m) {
+          return m;
+        }
+      },
+      taxiModelSelectConfiguration: {
+        placeholder: "Select a models...",
+        multiple: true,
+        templateResult: iconFormat,
+        templateSelection: iconFormat,
+        escapeMarkup: function(m) {
+          return m;
+        }
+      },
       filters: {
         isApply: false,
         title: "",
@@ -155,10 +219,72 @@ export default {
 
       this.taxies = data.Collection;
       this.filters.pagination.total = data.TotalCount;
+    },
+    async filterTaxies() {
+      this.filters.pagination.currentPage = 1;
+
+      let params = {
+        skip:
+          this.filters.pagination.pageSize *
+          (this.filters.pagination.currentPage - 1),
+        take: this.filters.pagination.pageSize,
+        selectedTypeIds: this.selectedTypes,
+        selectedCompanyIds: this.selectedCompanies,
+        selectedModelIds: this.selectedModels,
+        startDate: this.startDate,
+        endDate: this.endDate
+      };
+
+      let data = (await taxiService.getTaxiesByParams(params)).data.Data;
+
+      this.taxies = data.Collection;
+      this.filters.pagination.total = data.TotalCount;
+    }
+  },
+  computed: {
+    filterModels() {
+      if (this.selectedCompanies.length) {
+        let models = this.loadedModels
+          .filter(
+            el =>
+              this.selectedCompanies.some(id => id == el.AirTaxiCompanyId) &&
+              (!this.selectedTypes.length ||
+                this.selectedTypes.some(id => id == el.AirTaxiTypeId))
+          )
+          .map(el => ({
+            id: el.AirTaxiModelId,
+            text: el.Name
+          }));
+
+        return models;
+      }
+
+      return [];
     }
   },
   async beforeMount() {
+    let companies = (await taxiService.getAirTaxiCompanies()).data.Data;
+    let types = (await taxiService.getAirTaxiTypes()).data.Data;
+    this.loadedModels = (await taxiService.getAirTaxiModels()).data.Data;
+
+    this.companies = companies.map(el => ({
+      id: el.AirTaxiCompanyId,
+      text: el.Name
+    }));
+
+    this.types = types.map(el => ({
+      id: el.AirTaxiTypeId,
+      text: el.Name
+    }));
+
     await this.getTaxies();
   }
 };
 </script>
+
+<style>
+.icon-taxi-image {
+  width: 130px !important;
+  height: 100px !important;
+}
+</style>

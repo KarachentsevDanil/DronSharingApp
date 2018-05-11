@@ -48,12 +48,6 @@ export default {
     pageSizeOptions: [10, 25, 50, 100],
     columns: [
       {
-        title: "Id",
-        field: "AirTaxiModelId",
-        sortable: false,
-        tdStyle: { width: "10%" }
-      },
-      {
         title: "Model Name",
         field: "Name",
         sortable: false

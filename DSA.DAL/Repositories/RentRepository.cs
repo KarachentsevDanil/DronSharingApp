@@ -46,6 +46,7 @@ namespace SAT.DAL.Repositories
         {
             return _dbContext.Rents
                 .Include(t => t.AirTaxi)
+                .Include(t => t.AirTaxi).ThenInclude(t => t.Customer)
                 .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel)
                 .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel).ThenInclude(t => t.Company)
                 .Include(t => t.AirTaxi).ThenInclude(t => t.AirTaxiModel).ThenInclude(t => t.Type)

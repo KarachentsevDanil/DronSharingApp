@@ -10,6 +10,14 @@ namespace SAT.BLL.Dto.Rents
 
         public string CustomerName { get; set; }
 
+        public string CustomerEmail { get; set; }
+
+        public string OwnerId { get; set; }
+
+        public string OwnerName { get; set; }
+
+        public string OwnerEmail { get; set; }
+
         public int AirTaxiId { get; set; }
 
         public string AirTaxiModel { get; set; }
@@ -24,10 +32,12 @@ namespace SAT.BLL.Dto.Rents
 
         public string AirTaxiDescription { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
 
         public int RentDaysCount { get; set; }
+
+        public double TotalCosts { get; set; }
     }
 }

@@ -40,6 +40,11 @@
                         <label>Maximum Range Flight(KM): </label>
                         <input v-model="maximumRangeFlight" type="number" class="form-control" placeholder="Maximum Range..."/>
                     </div>
+                    <div class="form-group">
+                        <p>Upload photo: </p>
+                        <vue-dropzone @vdropzone-success="photoSuccessfullyAdded" id="iconDropzone" :options="dropzoneOptions">
+                        </vue-dropzone>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -62,9 +67,16 @@ const iconFormat = el => {
 export default {
   data() {
     return {
+      dropzoneOptions: {
+        url: "https://httpbin.org/post",
+        thumbnailWidth: 200,
+        addRemoveLinks: true,
+        maxFiles: 1,
+        dictDefaultMessage:
+          "<span class='upload-text'><i class='fal fa-cloud-upload'></i> Upload photo</span>"
+      },
       companySelectConfiguration: {
         placeholder: "Select a company...",
-        minimumInputLength: 2,
         templateResult: iconFormat,
         templateSelection: iconFormat,
         escapeMarkup: function(m) {
@@ -74,7 +86,6 @@ export default {
       typeSelectConfiguration: {
         placeholder: "Select a type...",
         templateResult: iconFormat,
-        minimumInputLength: 2,
         templateSelection: iconFormat,
         escapeMarkup: function(m) {
           return m;
@@ -86,6 +97,7 @@ export default {
       description: "",
       capacity: 0,
       maximumRangeFlight: 0,
+      photo: "",
       companies: [],
       types: []
     };
@@ -108,6 +120,13 @@ export default {
     this.taxiTypeId = this.types[0].id;
   },
   methods: {
+    photoSuccessfullyAdded(file, response) {
+      this.photo = this.getFileData(file);
+    },
+    getFileData(file) {
+      let fileData = file.dataURL.split("base64,")[1];
+      return fileData;
+    },
     clearForm() {
       this.name = "";
       this.taxiCompanyId = null;
@@ -115,6 +134,7 @@ export default {
       this.description = "";
       this.capacity = 0;
       this.maximumRangeFlight = 0;
+      this.photo = "";
     },
     async addTaxiModel() {
       let data = {
@@ -123,7 +143,8 @@ export default {
         description: this.description,
         capacity: this.capacity,
         maximumRangeFlight: this.maximumRangeFlight,
-        name: this.name
+        name: this.name,
+        photo: this.photo
       };
 
       await taxiModelService.addTaxiModel(data);

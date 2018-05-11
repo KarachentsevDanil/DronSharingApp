@@ -10,9 +10,14 @@
 
                 <div class="modal-body">
                     <div class="form-group">
-							<label>Name: </label>
-							<input v-model="name" class="form-control" placeholder="Type Name..."/>
-					</div>
+                        <label>Name: </label>
+                        <input v-model="name" class="form-control" placeholder="Type Name..."/>
+                    </div>
+                    <div class="form-group">
+                        <label>Description: </label>
+                        <textarea cols="5" rows="5" v-model="description" class="form-control" placeholder="Description...">
+                        </textarea>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -31,16 +36,19 @@ import * as taxiTypeService from "../../api/taxi-type-service";
 export default {
   data() {
     return {
-      name: ""
+      name: "",
+      description: ""
     };
   },
   methods: {
     clearForm() {
       this.name = "";
+      this.description = "";
     },
     async addTaxiType() {
       let data = {
-        name: this.name
+        name: this.name,
+        description: this.description
       };
 
       await taxiTypeService.addTaxiType(data);

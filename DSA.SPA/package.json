@@ -12,11 +12,13 @@
         "axios": "^0.17.1",
         "chart.js": "^2.7.1",
         "core-js": "^2.4.1",
-        "underscore": "^1.8.3",
+        "luxon": "^1.2.0",
         "select2": "4.0.0",
+        "underscore": "^1.8.3",
         "vue": "^2.5.13",
         "vue-blockui": "^1.1.6",
         "vue-chartjs": "^3.1.1",
+        "vue-datetime": "^1.0.0-beta.3",
         "vue-gallery": "^1.3.0",
         "vue-router": "^3.0.1",
         "vue-server-renderer": "^2.5.13",
@@ -29,7 +31,8 @@
         "vuelidate": "^0.6.1",
         "vuetify": "^1.0.3",
         "vuex": "^3.0.1",
-        "vuex-router-sync": "^5.0.0"
+        "vuex-router-sync": "^5.0.0",
+        "weekstart": "^1.0.0"
     },
     "devDependencies": {
         "aspnet-webpack": "^2.0.1",

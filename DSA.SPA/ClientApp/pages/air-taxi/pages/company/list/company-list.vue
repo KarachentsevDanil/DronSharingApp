@@ -48,22 +48,24 @@ export default {
     pageSizeOptions: [10, 25, 50, 100],
     columns: [
       {
-        title: "Id",
-        field: "AirTaxiCompanyId",
-        sortable: false,
-        tdStyle: { width: "10%" }
-      },
-      {
         title: "Company Name",
         field: "Name",
-        sortable: false,
-        tdStyle: { width: "50%" }
+        sortable: false
+      },
+      {
+        title: "Country",
+        field: "Country",
+        sortable: false
+      },
+      {
+        title: "Description",
+        field: "Description",
+        sortable: false
       },
       {
         title: "Actions",
         tdComp: "companyActionCell",
-        thStyle: { textAlign: "center" },
-        tdStyle: { width: "40%" }
+        thStyle: { textAlign: "center" }
       }
     ],
     data: [],

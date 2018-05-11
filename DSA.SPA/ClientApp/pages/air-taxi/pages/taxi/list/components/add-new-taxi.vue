@@ -64,7 +64,6 @@ export default {
     return {
       companySelectConfiguration: {
         placeholder: "Select a company...",
-        minimumInputLength: 2,
         templateResult: iconFormat,
         templateSelection: iconFormat,
         escapeMarkup: function(m) {
@@ -74,7 +73,6 @@ export default {
       typeSelectConfiguration: {
         placeholder: "Select a type...",
         templateResult: iconFormat,
-        minimumInputLength: 2,
         templateSelection: iconFormat,
         escapeMarkup: function(m) {
           return m;
@@ -83,7 +81,6 @@ export default {
       taxiModelSelectConfiguration: {
         placeholder: "Select a model...",
         templateResult: iconFormat,
-        minimumInputLength: 2,
         templateSelection: iconFormat,
         escapeMarkup: function(m) {
           return m;

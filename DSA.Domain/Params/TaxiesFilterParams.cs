@@ -1,4 +1,5 @@
 ﻿using SAT.Domain.AirTaxies;
+using System;
 
 namespace SAT.Domain.Params
 {
@@ -6,11 +7,15 @@ namespace SAT.Domain.Params
     {
         public string CustomerId { get; set; }
 
-        public int? AirTaxiTypeId { get; set; }
+        public int[] SelectedTypeIds { get; set; }
 
-        public int? AirTaxiCompanyId { get; set; }
+        public int[] SelectedCompanyIds { get; set; }
 
-        public int? AirTaxiModelId { get; set; }
+        public int[] SelectedModelIds { get; set; }
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
 
         public string Term { get; set; }
     }
