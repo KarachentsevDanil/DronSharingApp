@@ -5,6 +5,7 @@ using SAT.WebApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace SAT.WebApi.Controllers
 {
@@ -31,6 +32,20 @@ namespace SAT.WebApi.Controllers
         {
             var rents = _rentService.GetRentsByParams(filterParams);
             return Json(JsonResultData.Success(rents));
+        }
+
+        [HttpGet]
+        public IActionResult GetRentsForCalendarByParams(RentsFilterParams filterParams)
+        {
+            var rents = _rentService.GetRentsForCalendarByParams(filterParams);
+
+            return Json(rents.Select(x => new
+            {
+                title = x.Title,
+                start = x.Start,
+                end = x.End,
+                color = x.Color
+            }).ToList());
         }
     }
 }

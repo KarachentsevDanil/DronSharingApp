@@ -8,7 +8,7 @@ using SAT.BLL.Dto.AirTaxies;
 
 namespace SAT.WebApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]/{id?}")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AirTaxiController : Controller
     {
@@ -17,6 +17,13 @@ namespace SAT.WebApi.Controllers
         public AirTaxiController(IAirTaxiService airTaxiService)
         {
             _airTaxiService = airTaxiService;
+        }
+
+        [HttpGet]
+        public IActionResult GetTaxiById(int id)
+        {
+            var taxi = _airTaxiService.GetTaxiById(id);
+            return Json(JsonResultData.Success(taxi));
         }
 
         [HttpPost]

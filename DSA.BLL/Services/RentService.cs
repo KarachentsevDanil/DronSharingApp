@@ -35,5 +35,12 @@ namespace SAT.BLL.Services
 
             return result;
         }
+
+        public List<RentCalendarDto> GetRentsForCalendarByParams(RentsFilterParams filterParams)
+        {
+            var rents = _unitOfWork.RentRepository.GetRentsByParams(filterParams);
+            var result = AutoMapper.Mapper.Map<IEnumerable<Rent>, List<RentCalendarDto>>(rents.Collection);
+            return result;
+        }
     }
 }

@@ -7,6 +7,8 @@ namespace SAT.BLL.Services.Contracts
     {
         void AddAirTaxi(AddAirTaxiDto data);
 
+        AirTaxiDto GetTaxiById(int id);
+
         CollectionResult<AirTaxiDto> GetAirTaxiesByParams(TaxiesFilterParams filterParams);
     }
 }

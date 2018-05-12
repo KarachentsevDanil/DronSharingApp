@@ -104,11 +104,13 @@
 
 									<div class="media-body">
 										<h6 class="media-heading text-semibold">
-											<a href="#">{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}}</a>
+											<router-link :to="'/taxi-details/'+taxi.AirTaxiId" >{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}} </router-link>
 										</h6>
 
 										<ul class="list-inline list-inline-separate text-muted mb-10">
-											<li><a href="#" class="text-muted">{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}}</a></li>
+											<li>
+                        <router-link :to="'/taxi-details/'+taxi.AirTaxiId" class="text-muted">{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}}</router-link>
+                      </li>
 											<li>{{taxi.AirTaxiTypeName}}</li>
                       <li>${{taxi.DailyCosts}} per day.</li>
 										</ul>

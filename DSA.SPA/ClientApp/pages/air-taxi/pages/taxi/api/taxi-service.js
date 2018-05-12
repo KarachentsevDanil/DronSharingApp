@@ -5,6 +5,14 @@ const apiTaxiCompany = "/api/airtaxicompany/";
 const apiTaxiType = "/api/airtaxitype/";
 const apiTaxi = "/api/airtaxi/";
 
+export const getAirTaxiById = id => {
+    let params = {
+        url: apiTaxi + `getTaxiById/${id}`
+    }
+
+    return httpService.getData(params);
+}
+
 export const getAirTaxiModels = data => {
     let params = {
         url: apiTaxiModel + "getAirTaxiModels",

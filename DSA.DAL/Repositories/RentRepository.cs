@@ -27,7 +27,7 @@ namespace SAT.DAL.Repositories
 
             var totalCount = rents.Count();
 
-            var result = rents
+            var result = filterParams.IsCalendarView ? rents.ToList() : rents
                 .Skip(filterParams.Skip)
                 .Take(filterParams.Take)
                 .AsNoTracking()
@@ -60,17 +60,22 @@ namespace SAT.DAL.Repositories
 
             if (!string.IsNullOrEmpty(filterParams.CustomerId))
             {
-                predicate = predicate.Extend(t => t.CustomerId == filterParams.CustomerId);
+                predicate = predicate.And(t => t.CustomerId == filterParams.CustomerId);
             }
 
             if (!string.IsNullOrEmpty(filterParams.Term))
             {
-                predicate = predicate.Extend(t => t.AirTaxi.AirTaxiModel.Name.Contains(filterParams.Term));
+                predicate = predicate.And(t => t.AirTaxi.AirTaxiModel.Name.Contains(filterParams.Term));
             }
 
-            if (filterParams.AirTaxiModelId.HasValue)
+            if (filterParams.AirTaxiId.HasValue)
             {
-                predicate = predicate.Extend(t => t.AirTaxi.AirTaxiModelId == filterParams.AirTaxiModelId.Value);
+                predicate = predicate.And(t => t.AirTaxiId == filterParams.AirTaxiId.Value);
+            }
+
+            if (filterParams.StartDate.HasValue && filterParams.EndDate.HasValue)
+            {
+                predicate = predicate.And(r => filterParams.StartDate.Value <= r.EndDate && filterParams.EndDate.Value >= r.StartDate);
             }
 
             filterParams.Expression = predicate;

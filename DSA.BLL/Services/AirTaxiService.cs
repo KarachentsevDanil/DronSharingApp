@@ -35,5 +35,11 @@ namespace SAT.BLL.Services
 
             return result;
         }
+
+        public AirTaxiDto GetTaxiById(int id)
+        {
+            var taxi = _unitOfWork.AirTaxiRepository.GetTaxiById(id);
+            return AutoMapper.Mapper.Map<AirTaxi, AirTaxiDto>(taxi);
+        }
     }
 }

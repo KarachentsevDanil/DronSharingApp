@@ -56,9 +56,9 @@ namespace SAT.DAL.Repositories
                 predicate = predicate.And(t => filterParams.SelectedModelIds.Any(id => id == t.AirTaxiModelId));
             }
 
-            if (filterParams.StartDate.HasValue && filterParams.EndDate.HasValue)
+            if (filterParams.Start.HasValue && filterParams.End.HasValue)
             {
-                predicate = predicate.And(t => !t.Rents.Any() || !(t.Rents.Any(r=> filterParams.StartDate.Value <= r.EndDate && filterParams.EndDate.Value >= r.StartDate)));
+                predicate = predicate.And(t => !t.Rents.Any() || !(t.Rents.Any(r => filterParams.Start.Value <= r.EndDate && filterParams.End.Value >= r.StartDate)));
             }
 
             filterParams.Expression = predicate;
@@ -87,6 +87,11 @@ namespace SAT.DAL.Repositories
             };
 
             return airTaxiResult;
+        }
+
+        public AirTaxi GetTaxiById(int id)
+        {
+            return GetAllAirTaxies().FirstOrDefault(t => t.AirTaxiId == id);
         }
     }
 }

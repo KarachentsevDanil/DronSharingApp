@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SAT.BLL.Dto.Rents;
 using SAT.Domain.Rents;
+using System;
 
 namespace SAT.BLL.Mapper
 {
@@ -24,6 +25,12 @@ namespace SAT.BLL.Mapper
                 .ForMember(x => x.StartDate, t => t.MapFrom(p => p.StartDate.ToShortDateString()))
                 .ForMember(x => x.EndDate, t => t.MapFrom(p => p.EndDate.ToShortDateString()))
                 .ForMember(x => x.AirTaxiPhoto, t => t.Ignore());
+
+            CreateMap<Rent, RentCalendarDto>()
+                .ForMember(x => x.Title, t => t.MapFrom(p => $"{p.Customer.FullName} - {p.Customer.Email}"))
+                .ForMember(x => x.Start, t => t.MapFrom(p => p.StartDate.ToString("O")))
+                .ForMember(x => x.End, t => t.MapFrom(p => p.EndDate.ToString("O")))
+                .ForMember(x => x.Color, t => t.MapFrom(p => DateTime.UtcNow > p.EndDate ? "#607D8B" : "#2196F3"));
 
             CreateMap<AddRentDto, Rent>()
                 .ForMember(x => x.RentId, t => t.Ignore())

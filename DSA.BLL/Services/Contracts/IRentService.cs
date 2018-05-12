@@ -1,5 +1,6 @@
 ﻿using SAT.BLL.Dto.Rents;
 using SAT.Domain.Params;
+using System.Collections.Generic;
 
 namespace SAT.BLL.Services.Contracts
 {
@@ -8,5 +9,7 @@ namespace SAT.BLL.Services.Contracts
         void AddRent(AddRentDto data);
 
         CollectionResult<RentDto> GetRentsByParams(RentsFilterParams filterParams);
+
+        List<RentCalendarDto> GetRentsForCalendarByParams(RentsFilterParams filterParams);
     }
 }
