@@ -118,7 +118,7 @@
 									</div>
 
 									<div class="media-right text-nowrap">
-										<span class="label bg-blue" >Rent a taxi</span>
+                      <router-link :to="'/taxi-details/'+taxi.AirTaxiId" class="label bg-blue">Rent a taxi</router-link>
 									</div>
 								</li>
 							</ul>
@@ -142,6 +142,11 @@
 
 <script>
 import * as taxiService from "../../../air-taxi/pages/taxi/api/taxi-service";
+
+import * as authGetters from "../../../auth/store/types/getter-types";
+import * as authResources from "../../../auth/store/resources";
+
+import { mapGetters } from "vuex";
 
 const iconFormat = el => {
   return el.text;
@@ -234,7 +239,9 @@ export default {
         selectedCompanyIds: this.selectedCompanies,
         selectedModelIds: this.selectedModels,
         startDate: this.startDate,
-        endDate: this.endDate
+        endDate: this.endDate,
+        customerId: this.getUser.CustomerId,
+        isRentTaxi: true
       };
 
       let data = (await taxiService.getTaxiesByParams(params)).data.Data;
@@ -244,6 +251,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      getUser: authResources.AUTH_STORE_NAMESPACE.concat(
+        authGetters.GET_USER_GETTER
+      )
+    }),
     filterModels() {
       if (this.selectedCompanies.length) {
         let models = this.loadedModels

@@ -16,8 +16,17 @@ namespace SAT.Domain.Rents
 
         public DateTime EndDate { get; set; }
 
+        public RentStatus Status { get; set; }
+
         public virtual Customer Customer { get; set; }
 
         public virtual AirTaxi AirTaxi { get; set; }
+    }
+
+    public enum RentStatus
+    {
+        Pending = 0,
+        Active = 1,
+        Completed = 2
     }
 }

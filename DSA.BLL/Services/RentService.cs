@@ -16,11 +16,18 @@ namespace SAT.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void AddRent(AddRentDto data)
+        public bool AddRent(AddRentDto data)
         {
             var newRent = AutoMapper.Mapper.Map<AddRentDto, Rent>(data);
-            _unitOfWork.RentRepository.Add(newRent);
-            _unitOfWork.Commit();
+            var canRentTaxi = _unitOfWork.RentRepository.CanRentTaxi(newRent);
+
+            if (canRentTaxi)
+            {
+                _unitOfWork.RentRepository.Add(newRent);
+                _unitOfWork.Commit();
+            }
+
+            return canRentTaxi;
         }
 
         public CollectionResult<RentDto> GetRentsByParams(RentsFilterParams filterParams)

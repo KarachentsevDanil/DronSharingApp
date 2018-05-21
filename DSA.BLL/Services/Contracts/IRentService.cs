@@ -6,7 +6,7 @@ namespace SAT.BLL.Services.Contracts
 {
     public interface IRentService
     {
-        void AddRent(AddRentDto data);
+        bool AddRent(AddRentDto data);
 
         CollectionResult<RentDto> GetRentsByParams(RentsFilterParams filterParams);
 

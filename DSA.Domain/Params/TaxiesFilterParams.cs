@@ -18,5 +18,7 @@ namespace SAT.Domain.Params
         public DateTime? End { get; set; }
 
         public string Term { get; set; }
+
+        public bool IsRentTaxi { get; set; }
     }
 }

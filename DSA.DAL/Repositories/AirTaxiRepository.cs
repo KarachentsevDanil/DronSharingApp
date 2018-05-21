@@ -61,6 +61,11 @@ namespace SAT.DAL.Repositories
                 predicate = predicate.And(t => !t.Rents.Any() || !(t.Rents.Any(r => filterParams.Start.Value <= r.EndDate && filterParams.End.Value >= r.StartDate)));
             }
 
+            if (filterParams.IsRentTaxi)
+            {
+                predicate = predicate.And(t => t.CustomerId != filterParams.CustomerId);
+            }
+
             filterParams.Expression = predicate;
         }
 

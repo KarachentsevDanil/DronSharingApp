@@ -6,5 +6,7 @@ namespace SAT.DAL.Repositories.Contract
     public interface IRentRepository : IRepository<Rent>
     {
         CollectionResult<Rent> GetRentsByParams(RentsFilterParams filterParams);
+
+        bool CanRentTaxi(Rent rent);
     }
 }

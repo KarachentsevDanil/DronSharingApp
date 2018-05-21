@@ -80,5 +80,11 @@ namespace SAT.DAL.Repositories
 
             filterParams.Expression = predicate;
         }
+
+        public bool CanRentTaxi(Rent rent)
+        {
+            return !_dbContext.AirTaxi.Include(t => t.Rents)
+                .Any(t => t.Rents.Any(r => rent.StartDate <= r.EndDate && rent.EndDate >= r.StartDate));
+        }
     }
 }

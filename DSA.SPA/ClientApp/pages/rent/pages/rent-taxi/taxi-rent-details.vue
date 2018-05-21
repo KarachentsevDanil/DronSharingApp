@@ -14,6 +14,12 @@
                         <li class="active">{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}}</li>
                     </ul>
                 </div>
+                
+                <div class="heading-elements">
+                        <div class="heading-btn-group">
+                            <a href="#" class="btn bg-blue btn-labeled heading-btn legitRipple" data-toggle="modal" data-target="#rentTaxi"><b><i class="icon-plus2"></i></b> Rent taxi</a>
+                        </div>
+                </div>
             </div>
         </div>
         <div class="content">
@@ -97,12 +103,14 @@
                 </div>
             </div>
         </div>
+        <taxi-rent-popup :taxi="taxi"/>
     </div>
 </template>
 
 <script>
     import * as taxiService from "../../../air-taxi/pages/taxi/api/taxi-service";
     import taxiRentCalendar from './taxi-rent-calendar';
+    import taxiRentPopup from './rent-taxi-popup';
 
     export default {
         props: {
@@ -111,7 +119,8 @@
             }
         },
         components:{
-            taxiRentCalendar: taxiRentCalendar
+            taxiRentCalendar: taxiRentCalendar,
+            taxiRentPopup: taxiRentPopup
         },
         data() {
             return {
