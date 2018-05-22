@@ -2,28 +2,27 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using SAT.BLL.Dto.Customers;
-using SAT.BLL.Services.Contracts;
-using SAT.WebApi.Authentication;
-using SAT.WebApi.Models;
+using RCS.BLL.Dto.Customers;
+using RCS.BLL.Services.Contracts;
+using RCS.WebApi.Authentication;
+using RCS.WebApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using SAT.Domain.Customers;
 
-namespace SAT.WebApi.Controllers
+namespace RCS.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly UserManager<Customer> _userManager;
-        private readonly SignInManager<Customer> _signInManager;
-        private readonly ICustomerService _customerService;
+        private readonly UserManager<Domain.Users.User> _userManager;
+        private readonly SignInManager<Domain.Users.User> _signInManager;
+        private readonly IUserService _customerService;
 
         public AccountController(
-            UserManager<Customer> userManager,
-            SignInManager<Customer> signInManager,
-            ICustomerService customerService)
+            UserManager<Domain.Users.User> userManager,
+            SignInManager<Domain.Users.User> signInManager,
+            IUserService customerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -31,7 +30,7 @@ namespace SAT.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] CustomerLoginDto model)
+        public async Task<IActionResult> Login([FromBody] UserLoginDto model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
@@ -47,15 +46,17 @@ namespace SAT.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] CustomerRegistrationDto data)
+        public async Task<IActionResult> Register([FromBody] UserRegistrationDto data)
         {
             if (ModelState.IsValid)
             {
-                var user = new Customer
+                var user = new Domain.Users.User
                 {
                     UserName = data.Email,
                     Email = data.Email,
-                    FullName = data.FullName,
+                    FirstName = data.FirstName,
+                    LastName = data.LastName,
+                    FacilityId = data.FacilityId,
                     DateOfBirthsday = data.DateOfBirthsday
                 };
 

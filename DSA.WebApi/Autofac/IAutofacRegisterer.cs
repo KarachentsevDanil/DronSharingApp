@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SAT.WebApi.Autofac
+namespace RCS.WebApi.Autofac
 {
     internal interface IAutofacRegisterer
     {

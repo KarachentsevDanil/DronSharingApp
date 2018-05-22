@@ -1,20 +1,26 @@
-﻿using SAT.DAL.Repositories.Contract;
+﻿using RCS.DAL.Repositories.Contract;
 
-namespace SAT.DAL.UnitOfWork.Contract
+namespace RCS.DAL.UnitOfWork.Contract
 {
     public interface IUnitOfWork
     {
-        ICustomerRepository CustomerRepository { get; set; }
+        IUserRepository UserRepository { get; set; }
 
-        IAirTaxiRepository AirTaxiRepository { get; set; }
+        IFacilityRepository FacilityRepository { get; set; }
 
-        IAirTaxiModelRepository AirTaxiModelRepository { get; set; }
+        IDoctorSpecializationRepository DoctorSpecializationRepository { get; set; }
 
-        IAirTaxiCompanyRepository AirTaxiCompanyRepository { get; set; }
+        IDoctorRepository DoctorRepository { get; set; }
 
-        IAirTaxiTypeRepository AirTaxiTypeRepository { get; set; }
+        IObservationRepository ObservationRepository { get; set; }
 
-        IRentRepository RentRepository { get; set; }
+        IResidentRepository ResidentRepository { get; set; }
+
+        IAppointmentRepository AppointmentRepository { get; set; }
+
+        IResidentContactRepository ResidentContactRepository { get; set; }
+
+        IResidentDoctorRepository ResidentDoctorRepository { get; set; }
 
         void Commit();
     }

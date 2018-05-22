@@ -1,6 +1,6 @@
 using System;
 
-namespace SAT.SPA.Models
+namespace RCS.SPA.Models
 {
     public class ErrorViewModel
     {

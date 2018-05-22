@@ -10,3 +10,12 @@ export const getRentsByParams = data => {
 
     return httpService.postData(params);
 }
+
+export const addRent = data => {
+    let params = {
+        url: apiRent + "addRent",
+        data: data
+    }
+
+    return httpService.postData(params);
+}

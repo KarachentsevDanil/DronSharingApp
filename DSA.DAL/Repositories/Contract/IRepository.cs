@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace SAT.DAL.Repositories.Contract
+namespace RCS.DAL.Repositories.Contract
 {
     public interface IRepository<T> where T : class
     {

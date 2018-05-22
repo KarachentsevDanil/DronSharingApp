@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace SAT.WebApi.Authentication
+namespace RCS.WebApi.Authentication
 {
     public class AuthenticationOptions
     {

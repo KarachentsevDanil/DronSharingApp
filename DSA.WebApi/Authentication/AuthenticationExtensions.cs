@@ -1,17 +1,17 @@
-using SAT.DAL.Context;
+using RCS.DAL.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using SAT.Domain.Customers;
+using RCS.Domain.Users;
 
-namespace SAT.WebApi.Authentication
+namespace RCS.WebApi.Authentication
 {
     public static class AuthenticationExtensions
     {
         public static IServiceCollection AddIdentityAuthorization(this IServiceCollection services)
         {
-            services.AddIdentity<Customer, IdentityRole>(o =>
+            services.AddIdentity<User, IdentityRole>(o =>
                 {
                     o.Password.RequireDigit = false;
                     o.Password.RequireLowercase = false;
@@ -20,7 +20,7 @@ namespace SAT.WebApi.Authentication
                     o.Password.RequiredLength = 6;
 
                 })
-                .AddEntityFrameworkStores<AirTaxiSharingContext>();
+                .AddEntityFrameworkStores<RelativeCommunicationContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

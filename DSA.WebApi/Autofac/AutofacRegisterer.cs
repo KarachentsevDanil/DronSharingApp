@@ -7,7 +7,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SAT.WebApi.Autofac
+namespace RCS.WebApi.Autofac
 {
     internal class AutofacRegisterer : IAutofacRegisterer
     {

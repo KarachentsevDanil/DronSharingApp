@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyModel;
 
-namespace SAT.WebApi.Autofac
+namespace RCS.WebApi.Autofac
 {
     public static class AutofacExtensions
     {

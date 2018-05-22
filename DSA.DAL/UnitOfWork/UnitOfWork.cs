@@ -1,30 +1,36 @@
 ﻿using System;
-using SAT.DAL.Context;
-using SAT.DAL.Repositories.Contract;
-using SAT.DAL.UnitOfWork.Contract;
+using RCS.DAL.Context;
+using RCS.DAL.Repositories.Contract;
+using RCS.DAL.UnitOfWork.Contract;
 
-namespace SAT.DAL.UnitOfWork
+namespace RCS.DAL.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly AirTaxiSharingContext _context;
+        private readonly RelativeCommunicationContext _context;
 
-        public UnitOfWork(AirTaxiSharingContext context)
+        public UnitOfWork(RelativeCommunicationContext context)
         {
             _context = context;
         }
 
-        public ICustomerRepository CustomerRepository { get; set; }
+        public IUserRepository UserRepository { get; set; }
 
-        public IAirTaxiRepository AirTaxiRepository { get; set; }
+        public IFacilityRepository FacilityRepository { get; set; }
 
-        public IAirTaxiModelRepository AirTaxiModelRepository { get; set; }
+        public IDoctorSpecializationRepository DoctorSpecializationRepository { get; set; }
 
-        public IAirTaxiCompanyRepository AirTaxiCompanyRepository { get; set; }
+        public IDoctorRepository DoctorRepository { get; set; }
 
-        public IAirTaxiTypeRepository AirTaxiTypeRepository { get; set; }
+        public IObservationRepository ObservationRepository { get; set; }
 
-        public IRentRepository RentRepository { get; set; }
+        public IResidentRepository ResidentRepository { get; set; }
+
+        public IAppointmentRepository AppointmentRepository { get; set; }
+
+        public IResidentContactRepository ResidentContactRepository { get; set; }
+
+        public IResidentDoctorRepository ResidentDoctorRepository { get; set; }
 
         public void Commit()
         {

@@ -1,4 +1,4 @@
-namespace SAT.WebApi.Models
+namespace RCS.WebApi.Models
 {
     public class JsonResultData
     {

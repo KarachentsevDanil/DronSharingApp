@@ -1,25 +1,28 @@
 using Autofac;
-using SAT.DAL.Context;
-using SAT.DAL.Repositories;
-using SAT.DAL.Repositories.Contract;
-using SAT.DAL.UnitOfWork;
-using SAT.DAL.UnitOfWork.Contract;
+using RCS.DAL.Context;
+using RCS.DAL.Repositories;
+using RCS.DAL.Repositories.Contract;
+using RCS.DAL.UnitOfWork;
+using RCS.DAL.UnitOfWork.Contract;
 
-namespace SAT.WebApi.Modules
+namespace RCS.WebApi.Modules
 {
     public class RepositoriesModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AirTaxiSharingContext>().As<AirTaxiSharingContext>().InstancePerLifetimeScope();
+            builder.RegisterType<RelativeCommunicationContext>().As<RelativeCommunicationContext>().InstancePerLifetimeScope();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().PropertiesAutowired();
-            builder.RegisterType<CustomerRepository>().As<ICustomerRepository>();
-            builder.RegisterType<AirTaxiRepository>().As<IAirTaxiRepository>();
-            builder.RegisterType<AirTaxiTypeRepository>().As<IAirTaxiTypeRepository>();
-            builder.RegisterType<AirTaxiCompanyRepository>().As<IAirTaxiCompanyRepository>();
-            builder.RegisterType<AirTaxiModelRepository>().As<IAirTaxiModelRepository>();
-            builder.RegisterType<RentRepository>().As<IRentRepository>();
+            builder.RegisterType<AppointmentRepository>().As<IAppointmentRepository>();
+            builder.RegisterType<DoctorRepository>().As<IDoctorRepository>();
+            builder.RegisterType<DoctorSpecializationRepository>().As<IDoctorSpecializationRepository>();
+            builder.RegisterType<FacilityRepository>().As<IFacilityRepository>();
+            builder.RegisterType<ObservationRepository>().As<IObservationRepository>();
+            builder.RegisterType<ResidentContactRepository>().As<IResidentContactRepository>();
+            builder.RegisterType<ResidentDoctorRepository>().As<IResidentDoctorRepository>();
+            builder.RegisterType<ResidentRepository>().As<IResidentRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
         }
     }
 }

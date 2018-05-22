@@ -1,4 +1,4 @@
-﻿namespace SAT.BLL.Mapper
+﻿namespace RCS.BLL.Mapper
 {
     public class AutoMapperConfig
     {
@@ -6,9 +6,9 @@
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<CustomerAutoMapperProfile>();
-                cfg.AddProfile<AirTaxiAutoMapperProfile>();
-                cfg.AddProfile<RentAutoMapperProfile>();
+                cfg.AddProfile<UserAutoMapperProfile>();
+                cfg.AddProfile<FacilityAutoMapperProfile>();
+                cfg.AddProfile<ResidentAutoMapperProfile>();
             });
 
             AutoMapper.Mapper.AssertConfigurationIsValid();

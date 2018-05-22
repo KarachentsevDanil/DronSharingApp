@@ -1,19 +1,19 @@
 ﻿using System.Linq;
-using SAT.DAL.Context;
-using SAT.DAL.Repositories.Contract;
+using RCS.DAL.Context;
+using RCS.DAL.Repositories.Contract;
 using Microsoft.EntityFrameworkCore;
 
-namespace SAT.DAL.Repositories
+namespace RCS.DAL.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        public Repository(AirTaxiSharingContext dbContext)
+        public Repository(RelativeCommunicationContext dbContext)
         {
             DbContext = dbContext;
             DbSet = DbContext.Set<T>();
         }
 
-        protected AirTaxiSharingContext DbContext { get; set; }
+        protected RelativeCommunicationContext DbContext { get; set; }
 
         protected DbSet<T> DbSet { get; set; }
 

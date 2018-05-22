@@ -1,26 +1,26 @@
 using Autofac;
-using SAT.DAL.Context;
+using RCS.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace SAT.WebApi.Modules
+namespace RCS.WebApi.Modules
 {
     public class DatabaseModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(CreateDbContextOptions).As<DbContextOptions<AirTaxiSharingContext>>();
+            builder.Register(CreateDbContextOptions).As<DbContextOptions<RelativeCommunicationContext>>();
         }
 
-        private static DbContextOptions<AirTaxiSharingContext> CreateDbContextOptions(IComponentContext context)
+        private static DbContextOptions<RelativeCommunicationContext> CreateDbContextOptions(IComponentContext context)
         {
             var configuration = context.Resolve<IConfiguration>();
             string connectionString = configuration["Data:DefaultConnection:ConnectionString"];
 
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<AirTaxiSharingContext>();
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder<RelativeCommunicationContext>();
             dbContextOptionsBuilder.UseSqlServer(connectionString);
 
-            using (var dbContext = new AirTaxiSharingContext(dbContextOptionsBuilder.Options))
+            using (var dbContext = new RelativeCommunicationContext(dbContextOptionsBuilder.Options))
             {
                 dbContext.Database.EnsureCreated();
             }
