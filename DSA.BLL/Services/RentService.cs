@@ -49,5 +49,12 @@ namespace SAT.BLL.Services
             var result = AutoMapper.Mapper.Map<IEnumerable<Rent>, List<RentCalendarDto>>(rents.Collection);
             return result;
         }
+
+        public void UpdateRent(RentDto data)
+        {
+            var rent = AutoMapper.Mapper.Map<RentDto, Rent>(data);
+            _unitOfWork.RentRepository.Update(rent);
+            _unitOfWork.Commit();
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace SAT.BLL.Services.Contracts
     {
         bool AddRent(AddRentDto data);
 
+        void UpdateRent(RentDto data);
+
         CollectionResult<RentDto> GetRentsByParams(RentsFilterParams filterParams);
 
         List<RentCalendarDto> GetRentsForCalendarByParams(RentsFilterParams filterParams);

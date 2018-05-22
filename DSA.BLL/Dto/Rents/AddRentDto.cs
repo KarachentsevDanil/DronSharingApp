@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAT.Domain.Rents;
+using System;
 
 namespace SAT.BLL.Dto.Rents
 {
@@ -11,5 +12,7 @@ namespace SAT.BLL.Dto.Rents
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public RentStatus Status { get; set; }
     }
 }

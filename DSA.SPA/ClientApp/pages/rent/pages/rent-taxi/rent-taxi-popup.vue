@@ -70,14 +70,15 @@ export default {
     },
     async rentTaxi() {
       let data = {
-        customerId: this.CustomerId,
+        customerId: this.getUser.CustomerId,
         airTaxiId: this.taxi.AirTaxiId,
         startDate: this.startDate,
         endDate: this.endDate
       };
 
       let result = (await rentService.addRent(data)).data;
-      if (this.result) {
+
+      if (result.Data) {
         $(".close-add-popup").click();
         this.clearForm();
         this.$noty.success("Rent has successfully added.");

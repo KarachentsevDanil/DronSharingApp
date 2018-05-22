@@ -23,7 +23,15 @@ namespace SAT.WebApi.Controllers
         [HttpPost]
         public IActionResult AddRent([FromBody] AddRentDto rent)
         {
-            _rentService.AddRent(rent);
+            rent.Status = Domain.Rents.RentStatus.Pending;
+            var result = _rentService.AddRent(rent);
+            return Json(JsonResultData.Success(result));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateRent([FromBody] RentDto rent)
+        {
+            _rentService.UpdateRent(rent);
             return Json(JsonResultData.Success());
         }
 
@@ -32,6 +40,13 @@ namespace SAT.WebApi.Controllers
         {
             var rents = _rentService.GetRentsByParams(filterParams);
             return Json(JsonResultData.Success(rents));
+        }
+
+        [HttpPost]
+        public IActionResult GetRents([FromBody] RentsFilterParams filterParams)
+        {
+            var rents = _rentService.GetRentsByParams(filterParams);
+            return Json(rents);
         }
 
         [HttpGet]

@@ -24,7 +24,7 @@ namespace SAT.BLL.Mapper
                 .ForMember(x => x.TotalCosts, t => t.MapFrom(p => (p.EndDate - p.StartDate).Days * p.AirTaxi.DailyCosts))
                 .ForMember(x => x.StartDate, t => t.MapFrom(p => p.StartDate.ToShortDateString()))
                 .ForMember(x => x.EndDate, t => t.MapFrom(p => p.EndDate.ToShortDateString()))
-                .ForMember(x => x.AirTaxiPhoto, t => t.Ignore());
+                .ForMember(x => x.AirTaxiPhoto, p => p.MapFrom(t => t.AirTaxi.AirTaxiModel.Photo != null && t.AirTaxi.AirTaxiModel.Photo.Length > 0 ? $"data:image/png;base64,{Convert.ToBase64String(t.AirTaxi.AirTaxiModel.Photo)}" : string.Empty));
 
             CreateMap<Rent, RentCalendarDto>()
                 .ForMember(x => x.Title, t => t.MapFrom(p => $"{p.Customer.FullName} - {p.Customer.Email}"))
@@ -34,6 +34,10 @@ namespace SAT.BLL.Mapper
 
             CreateMap<AddRentDto, Rent>()
                 .ForMember(x => x.RentId, t => t.Ignore())
+                .ForMember(x => x.AirTaxi, t => t.Ignore())
+                .ForMember(x => x.Customer, t => t.Ignore());
+
+            CreateMap<RentDto, Rent>()
                 .ForMember(x => x.AirTaxi, t => t.Ignore())
                 .ForMember(x => x.Customer, t => t.Ignore());
         }

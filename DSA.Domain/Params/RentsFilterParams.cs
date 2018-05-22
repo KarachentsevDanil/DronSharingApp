@@ -6,7 +6,9 @@ namespace SAT.Domain.Params
     public class RentsFilterParams : FilterParams<Rent>
     {
         public string CustomerId { get; set; }
-        
+
+        public bool OnlyActive { get; set; }
+
         public int? AirTaxiId { get; set; }
 
         public bool IsCalendarView { get; set; }

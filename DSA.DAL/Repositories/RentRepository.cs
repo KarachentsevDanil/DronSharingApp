@@ -73,6 +73,11 @@ namespace SAT.DAL.Repositories
                 predicate = predicate.And(t => t.AirTaxiId == filterParams.AirTaxiId.Value);
             }
 
+            if (filterParams.OnlyActive)
+            {
+                predicate = predicate.And(t => t.Status != RentStatus.Completed);
+            }
+
             if (filterParams.StartDate.HasValue && filterParams.EndDate.HasValue)
             {
                 predicate = predicate.And(r => filterParams.StartDate.Value <= r.EndDate && filterParams.EndDate.Value >= r.StartDate);
@@ -84,7 +89,7 @@ namespace SAT.DAL.Repositories
         public bool CanRentTaxi(Rent rent)
         {
             return !_dbContext.AirTaxi.Include(t => t.Rents)
-                .Any(t => t.Rents.Any(r => rent.StartDate <= r.EndDate && rent.EndDate >= r.StartDate));
+                .Any(t => t.AirTaxiId == rent.AirTaxiId && t.Rents.Any(r => rent.StartDate <= r.EndDate && rent.EndDate >= r.StartDate));
         }
     }
 }

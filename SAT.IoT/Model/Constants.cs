@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SAT.IoT.Model
+﻿namespace SAT.IoT.Model
 {
     public class Constants
     {
-        public const string BaseUrl = "";
+        public const string BaseUrl = "http://localhost:53689/";
     }
 }
