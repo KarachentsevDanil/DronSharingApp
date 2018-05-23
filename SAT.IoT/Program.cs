@@ -45,6 +45,10 @@ namespace RCS.IoT
                 var heartRate = CreateObservation(ObservationType.HeartRate, resident);
                 var temperature = CreateObservation(ObservationType.Temperature, resident);
 
+                Console.WriteLine($"Resident #{resident.ResidentId} blood pressure is {bloodPressure.SystolicValue} / {bloodPressure.DiastolicValue} {bloodPressure.Unit}");
+                Console.WriteLine($"Resident #{resident.ResidentId} heart rate is {bloodPressure.Value} {bloodPressure.Unit}");
+                Console.WriteLine($"Resident #{resident.ResidentId} temperature is {bloodPressure.Value} {bloodPressure.Unit}");
+
                 ObservationService.AddObservation(bloodPressure);
                 ObservationService.AddObservation(heartRate);
                 ObservationService.AddObservation(temperature);

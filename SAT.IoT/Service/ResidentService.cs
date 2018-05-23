@@ -6,8 +6,8 @@ namespace RCS.IoT.Service
 {
     public class ResidentService
     {
-        private const string _baseResidentDto = "";
-        private const string _getResidents = "";
+        private const string _baseResidentDto = "/api/resident/";
+        private const string _getResidents = "getResidents";
 
         public static CollectionResult<ResidentDto> GetResidents(ResidentsFilterParams residentsFilterParams)
         {

@@ -4,7 +4,7 @@ const apiResident = "/api/resident/";
 
 export const getResidentById = id => {
     let params = {
-        url: apiResident + `GetResidentById/${id}`
+        url: apiResident + `GetResidentById?id=${id}`
     }
 
     return httpService.getData(params);

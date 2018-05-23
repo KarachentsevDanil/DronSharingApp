@@ -5,8 +5,8 @@ namespace RCS.IoT.Service
 {
     public class ObservationService
     {
-        private const string _baseObservationDto = "";
-        private const string _addObservation = "";
+        private const string _baseObservationDto = "/api/observation/";
+        private const string _addObservation = "addObservation";
 
         public static void AddObservation(AddObservationDto observationDto)
         {

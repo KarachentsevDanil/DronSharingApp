@@ -32,13 +32,15 @@
 <script>
 import * as residentService from "../../api/resident-service";
 
-import addNewResident from './components/add-new-resident';
+import addNewResident from "./components/add-new-resident";
+import residentActionCell from "./components/resident-action-cell";
 
 import Vue from "Vue";
 
 export default {
   components: {
-    addNewResident: addNewResident
+    addNewResident: addNewResident,
+    residentActionCell: residentActionCell
   },
   data: () => ({
     tblClass: "grid-table",
@@ -63,6 +65,11 @@ export default {
         title: "BirthDay",
         field: "FormattedDate",
         sortable: false
+      },
+      {
+        title: "Actions",
+        tdComp: "residentActionCell",
+        thStyle: { textAlign: "center" }
       }
     ],
     data: [],
