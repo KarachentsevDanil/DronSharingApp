@@ -34,6 +34,7 @@ namespace RCS.BLL.Mapper
                 .ForMember(x => x.Facility, t => t.Ignore())
                 .ForMember(x => x.Observations, t => t.Ignore())
                 .ForMember(x => x.Contacts, t => t.Ignore())
+                .ForMember(x => x.Appointments, t => t.Ignore())
                 .ForMember(x => x.Doctors, t => t.Ignore());
 
             CreateMap<Appointment, AppointmentDto>()
@@ -53,6 +54,8 @@ namespace RCS.BLL.Mapper
 
             CreateMap<Resident, ResidentDto>()
                .ForMember(x => x.FacilityName, t => t.MapFrom(p => p.Facility.Name))
+               .ForMember(x => x.FullName, t => t.MapFrom(p => $"{p.FirstName} {p.LastName}"))
+               .ForMember(x => x.FormattedDate, t => t.MapFrom(p => p.BirthDay.ToShortDateString()))
                .ForMember(x => x.Photo, t => t.MapFrom(p => $"data:image/png;base64,{Convert.ToBase64String(p.Photo)}"));
         }
     }

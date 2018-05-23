@@ -5,6 +5,7 @@ using RCS.Domain.Params;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using RCS.Domain.Facilities;
+using System.Collections.Generic;
 
 namespace RCS.DAL.Repositories
 {
@@ -58,6 +59,11 @@ namespace RCS.DAL.Repositories
             };
 
             return airTaxiResult;
+        }
+
+        public IEnumerable<Facility> GetFacilitiesByTerm(string term)
+        {
+            return GetAllFacilities().Where(t => t.Name.Contains(term)).ToList();
         }
     }
 }

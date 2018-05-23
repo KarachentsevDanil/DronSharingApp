@@ -1,11 +1,6 @@
 <template>
     <div>
         <div class="panel panel-body login-form">
-            <div class="text-center">
-                <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i>
-                </div>
-                <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
-            </div>
 
             <div class="form-group has-feedback has-feedback-left">
                 <input type="text" class="form-control" :placeholder="labels.properties.emailLable"
@@ -33,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" @click="submit" :disabled="isInvaild" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+                <button type="submit" @click="submit" :disabled="isInvaild" class="btn bg-blue btn-block">Login</button>
             </div>
             
             <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>

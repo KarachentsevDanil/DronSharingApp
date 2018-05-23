@@ -7,7 +7,6 @@
                 <main>
                     <div class="page-container">
                         <div class="page-content">
-                            <side-nav-menu></side-nav-menu>
                             <div class="content-wrapper">
                                 <router-view></router-view>
                                 <app-footer></app-footer>
@@ -18,13 +17,6 @@
             </div>
             <div v-else>
                 <div class="login-container">
-
-                    <div class="navbar navbar-inverse" style="background: #37474f; border-radius: 0;">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="../../assets/limitless/images/logo_light.png" alt="Engage"></a>
-                        </div>
-                    </div>
-
                     <div class="page-container">
                         <div class="page-content">
                             <div class="content-wrapper">
@@ -43,9 +35,7 @@
 <script>
 import Vue from "vue";
 import appFooter from "./app-footer";
-import sideNavMenu from "./side-nav-menu";
 import topNavMenu from './top-nav-menu';
-//import NavMenu from "./nav-menu";
 
 import "../../assets/limitless/icons/icomoon/styles.css";
 import "../../assets/limitless/css/bootstrap.css";
@@ -69,7 +59,6 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     appFooter: appFooter,
-    sideNavMenu: sideNavMenu,
     topNavMenu: topNavMenu
   },
   data() {

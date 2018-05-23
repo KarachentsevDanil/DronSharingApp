@@ -35,5 +35,11 @@ namespace RCS.BLL.Services
 
             return result;
         }
+
+        public IEnumerable<FacilityDto> GetFacilitiesByTerm(string term)
+        {
+            var facilities = _unitOfWork.FacilityRepository.GetFacilitiesByTerm(term);
+            return AutoMapper.Mapper.Map<IEnumerable<Facility>, List<FacilityDto>>(facilities);
+        }
     }
 }

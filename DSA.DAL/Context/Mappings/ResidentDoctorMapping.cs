@@ -13,7 +13,7 @@ namespace RCS.DAL.Context.Mappings
 
             builder.HasKey(x => x.ResidentDoctorId);
 
-            builder.HasOne(x => x.Resident).WithMany(x => x.Doctors).HasForeignKey(x => x.ResidentId);
+            builder.HasOne(x => x.Resident).WithMany(x => x.Doctors).HasForeignKey(x => x.ResidentId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Doctor).WithMany(x => x.Residents).HasForeignKey(x => x.DoctorId);
         }

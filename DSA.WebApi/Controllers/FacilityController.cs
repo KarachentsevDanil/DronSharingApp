@@ -25,7 +25,14 @@ namespace RCS.WebApi.Controllers
             _facilityService.AddFacility(facilityDto);
             return Json(JsonResultData.Success());
         }
-        
+
+        [HttpGet]
+        public IActionResult GetFacilitiesByTerm(string term)
+        {
+            var facilities = _facilityService.GetFacilitiesByTerm(term ?? string.Empty);
+            return Json(JsonResultData.Success(facilities));
+        }
+
         [HttpPost]
         public IActionResult GetFacilities([FromBody] FacilitiesFilterParams filterParams)
         {

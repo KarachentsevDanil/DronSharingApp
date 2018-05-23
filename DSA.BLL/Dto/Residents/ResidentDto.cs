@@ -6,9 +6,13 @@ namespace RCS.BLL.Dto.Residents
     {
         public int ResidentId { get; set; }
 
+        public string FullName { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string FormattedDate { get; set; }
 
         public DateTime BirthDay { get; set; }
 

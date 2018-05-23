@@ -24,14 +24,14 @@ namespace RCS.WebApi.Controllers
         [HttpGet]
         public IActionResult GetDoctorsByTerm(string term)
         {
-            var doctors = _doctorService.GetDoctors(term);
+            var doctors = _doctorService.GetDoctors(term ?? string.Empty);
             return Json(JsonResultData.Success(doctors));
         }
 
         [HttpGet]
         public IActionResult GetDoctorSpecializationsByTerm(string term)
         {
-            var doctors = _doctorSpecializationService.GetDoctorSpecializationByTerm(term);
+            var doctors = _doctorSpecializationService.GetDoctorSpecializationByTerm(term ?? string.Empty);
             return Json(JsonResultData.Success(doctors));
         }
 

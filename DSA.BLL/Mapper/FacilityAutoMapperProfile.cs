@@ -25,10 +25,11 @@ namespace RCS.BLL.Mapper
                 .ForMember(x => x.Doctors, t => t.Ignore());
 
             CreateMap<Doctor, DoctorDto>()
+                .ForMember(x => x.FullName, t => t.MapFrom(p => $"{p.FirstName} {p.LastName}"))
                 .ForMember(x => x.Specialization, t => t.MapFrom(p => p.DoctorSpecialization.Name))
                 .ForMember(x => x.FacilityName, t => t.MapFrom(p => p.Facility.Name));
 
-            CreateMap<DoctorSpecializationDto, DoctorSpecialization>();
+            CreateMap<DoctorSpecialization, DoctorSpecializationDto>();
 
             CreateMap<Facility, FacilityDto>();
         }

@@ -1,18 +1,7 @@
 <template>
     <div>
           <div class="panel panel-body login-form">
-            <div class="text-center">
-                <div class="icon-object border-success text-success">
-                    <i class="icon-plus3"></i>
-                </div>
-                <h5 class="content-group">Create account <small class="display-block">All fields are required</small></h5>
-            </div>
-
-            <div class="content-divider text-muted form-group">
-                <span>Your credentials</span>
-            </div>
-
-
+            
             <div class="form-group has-feedback has-feedback-left">
                 <input type="text" class="form-control" :placeholder="labels.properties.emailLable"
                                           v-model="user.email"
@@ -51,7 +40,7 @@
                 </div>
             </div>
              <div class="form-group">
-                <button type="submit" :disabled="isInvaild" @click="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+                <button type="submit" :disabled="isInvaild" @click="submit" class="btn bg-teal btn-block btn-lg">Register</button>
              </div>
             <div class="content-divider text-muted form-group"><span>{{labels.commands.haveAccountLabel}}</span></div>
             <router-link to="/login" class="btn btn-default btn-block content-group">{{labels.commands.signInLabel}}</router-link>
@@ -92,10 +81,13 @@
         }),
         methods: {
             async submit() {
+                let fullName = this.user.fullName.split(" ");
+
                 let data = {
                     Email: this.user.email,
                     Password: this.user.password,
-                    FullName: this.user.fullName,
+                    FirstName: fullName[0],
+                    LastName: fullName[1],
                     DateOfBirthsday: this.user.birthday
                 };
 

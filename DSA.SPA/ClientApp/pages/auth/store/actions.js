@@ -14,7 +14,7 @@ export default {
 
             context.commit(mutations.SET_TOKEN_MUTATOR, token);
             context.commit(mutations.SET_USER_MUTATOR, userDate.data.user);
-            data.router.push("/taxies");
+            data.router.push("/home");
         } else {
             data.notification.error(
                 authResources.popupMessages.loginFailedMessage

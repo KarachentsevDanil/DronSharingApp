@@ -17,7 +17,7 @@ namespace RCS.DAL.Repositories
         {
             _dbContext = dbContext;
         }
-        
+
         public CollectionResult<Doctor> GetDoctorsByParams(DoctorsFilterParams parameters)
         {
             var doctors = GetAllDoctors();
@@ -46,7 +46,10 @@ namespace RCS.DAL.Repositories
 
         private IQueryable<Doctor> GetAllDoctors()
         {
-            return _dbContext.Doctors.AsQueryable();
+            return _dbContext.Doctors
+                .Include(t => t.DoctorSpecialization)
+                .Include(t => t.Facility)
+                .AsQueryable();
         }
 
         private void FillDoctorQueryParams(DoctorsFilterParams filterParams)

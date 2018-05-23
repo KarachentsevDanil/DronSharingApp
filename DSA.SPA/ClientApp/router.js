@@ -4,15 +4,20 @@ import HomePage from './pages/layout/home-page'
 import LoginPage from "./pages/auth/pages/login";
 
 import authorizationRoutes from "./routes/authorization-routes";
-import airTaxiRoutes from "./routes/air-taxi-routes";
-import rentRoutes from "./routes/rent-routes";
+import facilityRoutes from "./routes/facility-routes";
+import residentRoutes from "./routes/resident-routes";
+import userRoutes from "./routes/user-routes";
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes = [{
+        path: "/home",
+        component: HomePage
+    },
     ...authorizationRoutes,
-    ...airTaxiRoutes,
-    ...rentRoutes,
+    ...facilityRoutes,
+    ...residentRoutes,
+    ...userRoutes,
     {
         path: "*",
         component: LoginPage

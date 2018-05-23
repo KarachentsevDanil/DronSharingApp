@@ -21,7 +21,7 @@ namespace RCS.WebApi.Autofac
         public void RegisterModules(IEnumerable<AssemblyName> assemblyNames)
         {
             var assemblies = assemblyNames
-                .Where(name => name.Name.StartsWith("SAT"))
+                .Where(name => name.Name.StartsWith("RCS"))
                 .Distinct()
                 .Select(Assembly.Load);
 
