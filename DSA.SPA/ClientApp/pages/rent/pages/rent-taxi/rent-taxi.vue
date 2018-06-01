@@ -3,29 +3,17 @@
   <div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-home2 position-left"></i> <span class="text-semibold">Rent a Taxi</span></h4>
+							<h4><i class="icon-home2 position-left"></i> <span class="text-semibold" v-localize="{i: 'rent.rentTaxi'}"></span></h4>
 						</div>
-
-						<!-- <div class="heading-elements">
-							<div class="heading-btn-group">
-								<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-								<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-								<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
-							</div>
-						</div> -->
 					</div>
 
 					<div class="breadcrumb-line breadcrumb-line-component">
 						<ul class="breadcrumb">
-							<li><a><i class="icon-home2 position-left"></i> Rents</a></li>
-							<li class="active">Rent taxi</li>
+							<li><a><i class="icon-home2 position-left"></i> <span v-localize="{i: 'rent.rents'}"></span></a></li>
+							<li class="active" v-localize="{i: 'rent.rentTaxi'}"></li>
 						</ul>
 					</div>
 				</div>
-				<!-- /page header -->
-
-
-				<!-- Content area -->
 				<div class="content">
 
 					<!-- Detached sidebar -->
@@ -38,28 +26,28 @@
 									<div class="panel-heading">
 										<div class="panel-title text-semibold">
 											<i class="icon-search text-size-base position-left"></i>
-											Filter
+											<span v-localize="{i: 'common.filter'}"></span>
 										</div>
 									</div>
 
 									<div class="panel-body">
 										<div>
 											<div class="form-group">
-                      <label>Company: </label>
+                      <label v-localize="{i: 'rent.companies'}"> </label>
                       <select2 style="width: 100%;"
                              :configuration="companySelectConfiguration"
                              :options="companies"
                              v-model="selectedCompanies"></select2>
                     </div>
                      <div class="form-group">
-                      <label>Taxi Type: </label>
+                      <label v-localize="{i: 'rent.types'}"> </label>
                       <select2 style="width: 100%;"
                              :configuration="typeSelectConfiguration"
                              :options="types"
                              v-model="selectedTypes"></select2>
                     </div>
                     <div class="form-group">
-                      <label>Taxi Models: </label>
+                      <label v-localize="{i: 'rent.models'}"> </label>
                       <select2 style="width: 100%;"
                              :configuration="taxiModelSelectConfiguration"
                              :options="filterModels"
@@ -67,17 +55,17 @@
                              v-model="selectedModels"></select2>
                     </div>
 										<div class="form-group">
-                      <label>Start Date: </label>
+                      <label v-localize="{i: 'rent.startDate'}"> </label>
                       <datetime input-class="form-control" v-model="startDate"></datetime>
                     </div>
 										<div class="form-group">
-                      <label>End Date: </label>
+                      <label v-localize="{i: 'rent.endDate'}"> </label>
                       <datetime input-class="form-control" v-model="endDate"></datetime>
                     </div>
 
 											<button class="btn bg-blue btn-block" @click="filterTaxies">
 												<i class="icon-search text-size-base position-left"></i>
-												Find Taxies
+												<span v-localize="{i: 'rent.findTaxies'}"></span>
 											</button>
 										</div>
 									</div>
@@ -112,13 +100,13 @@
                         <router-link :to="'/taxi-details/'+taxi.AirTaxiId" class="text-muted">{{taxi.AirTaxiCompanyName}} {{taxi.AirTaxiModelName}}</router-link>
                       </li>
 											<li>{{taxi.AirTaxiTypeName}}</li>
-                      <li>${{taxi.DailyCosts}} per day.</li>
+                      <li>${{taxi.DailyCosts}} <span v-localize="{i: 'rent.perDay'}"></span> </li>
 										</ul>
 										{{taxi.AirTaxiDescription}}
 									</div>
 
 									<div class="media-right text-nowrap">
-                      <router-link :to="'/taxi-details/'+taxi.AirTaxiId" class="label bg-blue">Rent a taxi</router-link>
+                      <router-link :to="'/taxi-details/'+taxi.AirTaxiId" class="label bg-blue" v-localize="{i: 'rent.rentTaxi'}"></router-link>
 									</div>
 								</li>
 							</ul>

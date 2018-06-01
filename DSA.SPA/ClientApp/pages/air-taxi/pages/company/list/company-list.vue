@@ -3,18 +3,20 @@
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold">Company List</span></h4>
+                    <h4><i class="icon-users2 position-left"></i>
+                      <span class="text-semibold" v-localize="{i: 'companies.companyList'}"></span>
+                    </h4>
 
                     <ul class="breadcrumb position-right">
-                        <li><a>Air Taxies</a></li>
-                        <li class="active">Comapny List</li>
+                        <li><a v-localize="{i: 'common.airTaxies'}"></a></li>
+                        <li class="active" v-localize="{i: 'companies.companyList'}"></li>
                     </ul>
                     <a class="heading-elements-toggle"><i class="icon-more"></i></a><a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 </div>
                 <div class="heading-elements">
                         <div class="heading-btn-group">
                             <a href="#" class="btn bg-blue btn-labeled heading-btn legitRipple" data-toggle="modal" data-target="#addCompany">
-                                <b><i class="icon-plus2"></i></b> Add Company
+                                <b><i class="icon-plus2"></i></b> <span v-localize="{i: 'companies.addCompany'}"></span>
                             </a>
                         </div>
                 </div>
@@ -34,9 +36,10 @@
 import * as companyService from "../api/company-service";
 
 import companyActionCell from "./components/company-action-cell";
-import addNewCompany from './components/add-new-company';
+import addNewCompany from "./components/add-new-company";
 
 import Vue from "Vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -81,7 +84,18 @@ export default {
         await this.getCompanies();
       },
       deep: true
+    },
+    currentLanguage() {
+      this.localizePage();
     }
+  },
+  mounted() {
+    this.localizePage();
+  },
+  computed: {
+    ...mapGetters({
+      currentLanguage: "getCurrentLanguage"
+    })
   },
   methods: {
     async getCompanies() {
@@ -94,6 +108,19 @@ export default {
 
       this.data = data.Collection;
       this.total = data.TotalCount;
+    },
+    localizePage() {
+      this.columns[0].title = this.$locale({ i: "companyGrid.nameTitle" });
+      this.columns[1].title = this.$locale({ i: "companyGrid.countryTitle" });
+      this.columns[2].title = this.$locale({i: "companyGrid.descriptionTitle"});
+      this.columns[3].title = this.$locale({ i: "companyGrid.actionsTitle" });
+
+      // $("div[name='Datatable'] div.col-sm-6 strong").text(
+      //   `${this.$locale({ i: "common.totalItems" })} ${this.total} , `
+      // );
+      // $("label[name='PageSizeSelect']").text(
+      //   this.$locale({ i: "common.itemsPages" })
+      // );
     }
   }
 };

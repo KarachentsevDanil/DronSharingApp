@@ -14,6 +14,9 @@ const state = {
         message: "Please wait ...",
         icon: '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>',
         isLoading: false
+    },
+    language: {
+        currentLanguage: "US"
     }
 };
 

@@ -5,51 +5,53 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Company</h4>
+                    <h4 class="modal-title" v-localize="{i: 'models.addModel'}"></h4>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name: </label>
-                        <input v-model="name" class="form-control" placeholder="Model Name..."/>
+                        <label>
+                          <span v-localize="{i: 'common.name'}"></span>:
+                        </label>
+                        <input v-model="name" class="form-control" v-localize="{i: 'models.companyName', attr: 'modelName'}"/>
                     </div>
                     <div class="form-group">
-                      <label>Company: </label>
+                      <label v-localize="{i: 'models.company'}"></label>
                       <select2 style="width: 100%;"
                              :configuration="companySelectConfiguration"
                              :options="companies"
                              v-model="taxiCompanyId"></select2>
                     </div>
                      <div class="form-group">
-                      <label>Taxi Type: </label>
+                      <label v-localize="{i: 'models.taxiType'}"></label>
                       <select2 style="width: 100%;"
                              :configuration="typeSelectConfiguration"
                              :options="types"
                              v-model="taxiTypeId"></select2>
                     </div>
                     <div class="form-group">
-                        <label>Description: </label>
-                        <textarea cols="5" rows="5" v-model="description" class="form-control" placeholder="Description...">
+                        <label v-localize="{i: 'models.modelDescription'}"></label>
+                        <textarea cols="5" rows="5" v-model="description" class="form-control" v-localize="{i: 'models.modelDescription', attr: 'placeholder'}">
                         </textarea>
                     </div>
                     <div class="form-group">
-                        <label>Capacity: </label>
-                        <input v-model="capacity" type="number" class="form-control" placeholder="Capacity..."/>
+                        <label v-localize="{i: 'models.capacity'}"></label>
+                        <input v-model="capacity" type="number" class="form-control" v-localize="{i: 'models.modelCapacity', attr: 'placeholder'}"/>
                     </div>
                     <div class="form-group">
-                        <label>Maximum Range Flight(KM): </label>
-                        <input v-model="maximumRangeFlight" type="number" class="form-control" placeholder="Maximum Range..."/>
+                        <label v-localize="{i: 'models.flightRange'}"></label>
+                        <input v-model="maximumRangeFlight" type="number" class="form-control" v-localize="{i: 'models.modelFlightRange', attr: 'placeholder'}"/>
                     </div>
                     <div class="form-group">
-                        <p>Upload photo: </p>
+                        <p v-localize="{i: 'models.uploadPhoto'}"></p>
                         <vue-dropzone @vdropzone-success="photoSuccessfullyAdded" id="iconDropzone" :options="dropzoneOptions">
                         </vue-dropzone>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button @click="addTaxiModel" type="button" :disabled="!name || capacity == 0 || maximumRangeFlight == 0" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal">Close</button>
+                    <button @click="addTaxiModel" type="button" :disabled="!name || capacity == 0 || maximumRangeFlight == 0" class="btn btn-primary" v-localize="{i: 'common.add'}"></button>
+                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal" v-localize="{i: 'common.close'}"></button>
                 </div>
             </div>
         </div>
@@ -71,7 +73,6 @@ export default {
         url: "https://httpbin.org/post",
         thumbnailWidth: 200,
         addRemoveLinks: true,
-        maxFiles: 1,
         dictDefaultMessage:
           "<span class='upload-text'><i class='fal fa-cloud-upload'></i> Upload photo</span>"
       },
@@ -152,7 +153,7 @@ export default {
       $(".close-add-popup").click();
 
       this.clearForm();
-      this.$noty.success("Taxi model was successfully added.");
+      this.$noty.success(this.$locale({i: 'models.taxiModelAdded'}));
 
       this.refreshTaxiModelsList();
     }

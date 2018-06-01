@@ -3,18 +3,18 @@
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold">Taxi Type List</span></h4>
+                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold" v-localize="{i: 'type.taxiTypeList'}"></span></h4>
 
                     <ul class="breadcrumb position-right">
-                        <li><a>Air Taxies</a></li>
-                        <li class="active">Taxi Type List</li>
+                        <li><a v-localize="{i: 'common.airTaxies'}"></a></li>
+                        <li class="active" v-localize="{i: 'type.taxiTypeList'}"></li>
                     </ul>
                     <a class="heading-elements-toggle"><i class="icon-more"></i></a><a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 </div>
                 <div class="heading-elements">
                         <div class="heading-btn-group">
                             <a href="#" class="btn bg-blue btn-labeled heading-btn legitRipple" data-toggle="modal" data-target="#addTaxiType">
-                                <b><i class="icon-plus2"></i></b> Add Taxi Type
+                                <b><i class="icon-plus2"></i></b> <span v-localize="{i: 'type.addTaxiType'}"></span>
                             </a>
                         </div>
                 </div>
@@ -34,9 +34,10 @@
 import * as taxiTypeService from "../api/taxi-type-service";
 
 import typeActionCell from "./components/type-action-cell";
-import addNewType from './components/add-new-type';
+import addNewType from "./components/add-new-type";
 
 import Vue from "Vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -76,7 +77,18 @@ export default {
         await this.getTaxiTypes();
       },
       deep: true
+    },
+    currentLanguage() {
+      this.localizePage();
     }
+  },
+  mounted() {
+    this.localizePage();
+  },
+  computed: {
+    ...mapGetters({
+      currentLanguage: "getCurrentLanguage"
+    })
   },
   methods: {
     async getTaxiTypes() {
@@ -89,6 +101,11 @@ export default {
 
       this.data = data.Collection;
       this.total = data.TotalCount;
+    },
+    localizePage() {
+      this.columns[0].title = this.$locale({ i: "typeGrid.typeNameTitle" });
+      this.columns[1].title = this.$locale({ i: "typeGrid.descriptionTitle" });
+      this.columns[2].title = this.$locale({ i: "typeGrid.actionsTitle" });
     }
   }
 };

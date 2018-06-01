@@ -3,11 +3,11 @@
         <div class="page-header">
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold">Rent List</span></h4>
+                    <h4><i class="icon-users2 position-left"></i> <span class="text-semibold" v-localize="{i: 'rent.rentList'}"></span></h4>
 
                     <ul class="breadcrumb position-right">
-                        <li><a>Rents</a></li>
-                        <li class="active">Rent List</li>
+                        <li><a v-localize="{i: 'rent.rents'}"></a></li>
+                        <li class="active" v-localize="{i: 'rent.rentList'}"></li>
                     </ul>
                     <a class="heading-elements-toggle"><i class="icon-more"></i></a><a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 </div>
@@ -92,13 +92,20 @@ export default {
         await this.getRents();
       },
       deep: true
+    },
+    currentLanguage() {
+      this.localizePage();
     }
+  },
+  mounted() {
+    this.localizePage();
   },
   computed: {
     ...mapGetters({
       getUser: authResources.AUTH_STORE_NAMESPACE.concat(
         authGetters.GET_USER_GETTER
-      )
+      ),
+      currentLanguage: "getCurrentLanguage"
     })
   },
   methods: {
@@ -116,6 +123,13 @@ export default {
 
       this.data = data.Collection;
       this.total = data.TotalCount;
+    },
+    localizePage() {
+      this.columns[0].title = this.$locale({ i: "rentGrid.taxiTitle" });
+      this.columns[1].title = this.$locale({ i: "rentGrid.ownerTitle" });
+      this.columns[2].title = this.$locale({ i: "rentGrid.customerTitle" });
+      this.columns[3].title = this.$locale({ i: "rentGrid.infoTitle" });
+      this.columns[4].title = this.$locale({ i: "rentGrid.actionsTitle" });
     }
   }
 };

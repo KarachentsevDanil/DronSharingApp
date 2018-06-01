@@ -5,5 +5,8 @@ export default {
     },
     stopLoadingProccess(state) {
         state.options.isLoading = false;
+    },
+    setCurrentLanguage(state, language) {
+        state.language.currentLanguage = language;
     }
 };

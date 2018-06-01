@@ -6,5 +6,8 @@ export default {
     },
     stopLoadingProccess(context) {
         context.commit(mutations.STOP_LOADING_PROCCESS_MUTATION);
+    },
+    setCurrentLanguage(context, language) {
+        context.commit(mutations.SET_CURRENT_LANGUAGE, language);
     }
 };

@@ -15,31 +15,19 @@
                     </div>
 
                     <div class="sidebar-user-material-menu">
-                        <a href="#user-nav" data-toggle="collapse" class="legitRipple"><span>My Account</span> <i class="caret"></i></a>
+                        <a href="#user-nav" data-toggle="collapse" class="legitRipple">
+                            <span>
+                                {{language.selectedLanguage == "US" ? "My Account" : "Мій Аккаунт" }}
+                            </span> <i class="caret"></i></a>
                     </div>
                 </div>
 
                 <div class="navigation-wrapper collapse" id="user-nav">
                     <ul class="navigation">
                         <li>
-                            <router-link active-class="active" class="legitRipple" :to="'/user-profile'">
-                                <i class="icon-user6"></i>
-                                <span>My Profile</span>
-                            </router-link>
-                        </li>
-                        <!-- <li>
-                            <router-link active-class="active" class="legitRipple" :to="'/messages'">
-                                <i class="icon-bubbles5"></i>
-                                <span>
-                                    <span class="badge bg-teal-400 pull-right">58</span> Messages
-                                </span>
-                            </router-link>
-                        </li> -->
-                        <li class="divider"></li>
-                        <li>
                             <a class="legitRipple" v-on:click="logout">
                                 <i class="icon-exit"></i>
-                                <span>Logout</span>
+                                <span>{{language.selectedLanguage == "US" ? "Logout" : "Вийти" }}</span>
                             </a>
                         </li>
                     </ul>
@@ -76,81 +64,19 @@ import * as authGetters from "../auth/store/types/getter-types";
 import * as authActions from "../auth/store/types/action-types";
 import * as authResources from "../auth/store/resources";
 import { mapGetters } from "vuex";
+import * as enLocalization from "../../localization/en.js";
+import * as uaLocalization from "../../localization/ua.js";
 
 import * as mainStoreGetters from "../../store/types/action-types";
 
 export default {
+  props: {
+    language: {
+      type: Object
+    }
+  },
   data() {
-    return {
-      adminTaxiItems: [
-        {
-          title: "Air Taxi",
-          icon: "icon-users2",
-          url: "",
-          children: [
-            {
-              title: "Company List",
-              url: "/companies"
-            },
-            {
-              title: "Type List",
-              url: "/taxi-types"
-            },
-            {
-              title: "Model List",
-              url: "/taxi-models"
-            },
-            {
-              title: "Taxies List",
-              url: "/taxies"
-            }
-          ]
-        },
-        {
-          title: "Rents",
-          icon: "icon-cog3",
-          url: "",
-          children: [
-            {
-              title: "Rents List",
-              url: "/rent-list"
-            }
-          ]
-        }
-      ],
-      userTaxiItems: [
-        {
-          title: "Air Taxi",
-          icon: "icon-users2",
-          url: "",
-          children: [
-            {
-              title: "Model List",
-              url: "/taxi-models"
-            },
-            {
-              title: "My Taxy List",
-              url: "/taxies"
-            }
-          ]
-        },
-        {
-          title: "Rents",
-          icon: "icon-cog3",
-          url: "",
-          children: [
-            {
-              title: "Rent Taxi",
-              url: "/rent-taxi"
-            },
-            {
-              title: "My Rents List",
-              url: "/rent-list"
-            }
-          ]
-        }
-      ]
-    };
+    return {};
   },
   computed: {
     ...mapGetters({
@@ -170,8 +96,18 @@ export default {
     },
     getNavbarItems() {
       let role = this.getUsername.Role;
-    
+
       return role == "User" ? this.userTaxiItems : this.adminTaxiItems;
+    },
+    adminTaxiItems() {
+      return this.language.selectedLanguage == "US"
+        ? enLocalization.adminTaxiItems
+        : uaLocalization.adminTaxiItems;
+    },
+    userTaxiItems() {
+      return this.language.selectedLanguage == "US"
+        ? enLocalization.userTaxiItems
+        : uaLocalization.userTaxiItems;
     }
   },
   methods: {

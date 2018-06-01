@@ -14,12 +14,30 @@ import Datetime from 'vue-datetime'
 import Datatable from 'vue2-datatable-component';
 import grid from './pages/plugins/datatable/datatable';
 import select2 from './pages/plugins/select2/select2'
+import Localize from 'v-localize';
 
 import App from './pages/layout/app-root'
 
 import 'vue2-dropzone/dist/vue2Dropzone.css'
 import 'vuejs-noty/dist/vuejs-noty.css'
 import 'vue-datetime/dist/vue-datetime.css'
+
+import * as enLocalization from './localization/en.js';
+import * as uaLocalization from './localization/ua.js'
+
+let localize = Localize.config({
+    default: 'en-US',
+    available: ['en-US', 'ua-UA'],
+    fallback: '?',
+    localizations: {
+        "en-US": {
+            ...enLocalization.enLocalization
+        },
+        "ua-UA": {
+            ...uaLocalization.uaLocalization
+        }
+    }
+});
 
 Vue.prototype.$http = axios;
 
@@ -29,6 +47,7 @@ Vue.use(VueNoty);
 Vue.use(BlockUI);
 Vue.use(Datatable);
 Vue.use(Datetime);
+Vue.use(Localize);
 
 Vue.component('pagination', pagination);
 Vue.component('vueDropzone', vue2Dropzone);
@@ -40,7 +59,8 @@ Vue.component('select2', select2);
 const app = new Vue({
     store,
     router,
-    ...App
+    ...App,
+    localize
 });
 
 export {

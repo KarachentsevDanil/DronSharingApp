@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SAT.WebApi
 {
@@ -31,7 +32,10 @@ namespace SAT.WebApi
 
             services.AddCors();
 
-            services.AddMvc().AddJsonOptions(options =>
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            }).AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver
                     = new DefaultContractResolver();

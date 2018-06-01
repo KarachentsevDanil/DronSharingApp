@@ -1,7 +1,7 @@
 import axios from "axios";
 import router from "../router";
 
-const baseApiUrl = "http://localhost:53689/";
+const baseApiUrl = "https://localhost:44377/";
 
 axios.interceptors.response.use(
     response => {

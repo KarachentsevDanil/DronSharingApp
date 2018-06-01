@@ -5,16 +5,19 @@
                 <div class="icon-object border-success text-success">
                     <i class="icon-plus3"></i>
                 </div>
-                <h5 class="content-group">Create account <small class="display-block">All fields are required</small></h5>
+                <h5 class="content-group">
+                    <span v-localize="{i: 'registration.createAccount'}"></span> 
+                    <small class="display-block" v-localize="{i: 'registration.fieldsRequired'}"></small></h5>
             </div>
 
             <div class="content-divider text-muted form-group">
-                <span>Your credentials</span>
+                <span v-localize="{i: 'authorization.credentials'}"></span>
             </div>
 
 
             <div class="form-group has-feedback has-feedback-left">
-                <input type="text" class="form-control" :placeholder="labels.properties.emailLable"
+                <input type="text" class="form-control" 
+                                          v-localize="{i: 'registration.email', attr: 'placeholder'}"
                                           v-model="user.email"
                                           :error-messages="emailErrors"
                                           @input="$v.user.email.$touch()"
@@ -27,7 +30,8 @@
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input type="text" class="form-control" :placeholder="labels.properties.fullNameLabel"
+                <input type="text" class="form-control" 
+                                          v-localize="{i: 'registration.fullName', attr: 'placeholder'}"
                                           v-model="user.fullName"
                                           :error-messages="fullNameErrors"
                                           @input="$v.user.fullName.$touch()"
@@ -42,7 +46,7 @@
             <div class="form-group has-feedback has-feedback-left">
                 <input type="password" class="form-control" v-model="user.password"
                                           :error-messages="passwordErrors"
-                                          :placeholder="labels.properties.passwordLabel"
+                                          v-localize="{i: 'registration.password', attr: 'placeholder'}"
                                           @input="$v.user.password.$touch()"
                                           @blur="$v.user.password.$touch()"
                                           required>
@@ -51,10 +55,15 @@
                 </div>
             </div>
              <div class="form-group">
-                <button type="submit" :disabled="isInvaild" @click="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+                <button type="submit" :disabled="isInvaild" @click="submit" class="btn bg-teal btn-block btn-lg">
+                    <span v-localize="{i: 'registration.registr'}"></span>
+                    <i class="icon-circle-right2 position-right"></i></button>
              </div>
-            <div class="content-divider text-muted form-group"><span>{{labels.commands.haveAccountLabel}}</span></div>
-            <router-link to="/login" class="btn btn-default btn-block content-group">{{labels.commands.signInLabel}}</router-link>
+            <div class="content-divider text-muted form-group">
+                <span v-localize="{i: 'registration.doYouHaveAnAccount'}"></span>
+            </div>
+            <router-link to="/login" class="btn btn-default btn-block content-group" v-localize="{i: 'registration.singIn'}">
+            </router-link>
         </div>
     </div>
 </template>

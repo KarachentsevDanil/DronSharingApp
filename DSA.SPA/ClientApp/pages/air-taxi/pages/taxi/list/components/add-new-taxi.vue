@@ -5,26 +5,26 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Air Taxi</h4>
+                    <h4 class="modal-title" v-localize="{i: 'taxi.addAirTaxi'}"></h4>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                      <label>Company: </label>
+                      <label v-localize="{i: 'taxi.company'}"></label>
                       <select2 style="width: 100%;"
                              :configuration="companySelectConfiguration"
                              :options="companies"
                              v-model="taxiCompanyId"></select2>
                     </div>
                      <div class="form-group">
-                      <label>Taxi Type: </label>
+                      <label v-localize="{i: 'taxi.taxiType'}"></label>
                       <select2 style="width: 100%;"
                              :configuration="typeSelectConfiguration"
                              :options="types"
                              v-model="taxiTypeId"></select2>
                     </div>
                     <div class="form-group">
-                      <label>Taxi Models: </label>
+                      <label v-localize="{i: 'taxi.taxiModel'}"></label>
                       <select2 style="width: 100%;"
                              :configuration="taxiModelSelectConfiguration"
                              :options="models"
@@ -32,14 +32,14 @@
                              v-model="taxiModelId"></select2>
                     </div>
                     <div class="form-group">
-                        <label>Daily Costs: </label>
-                        <input v-model="dailyCosts" type="number" class="form-control" placeholder="Daily costs..."/>
+                        <label v-localize="{i: 'taxi.pricePerDay'}"></label>
+                        <input v-model="dailyCosts" type="number" class="form-control" v-localize="{i: 'taxi.pricePerDay', attr: 'placeholder'}"/>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button @click="addTaxiModel" type="button" :disabled="!taxiModelId || dailyCosts == 0.0" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal">Close</button>
+                    <button @click="addTaxiModel" type="button" :disabled="!taxiModelId || dailyCosts == 0.0" class="btn btn-primary" v-localize="{i: 'common.add'}"></button>
+                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal" v-localize="{i: 'common.close'}"></button>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@ export default {
       $(".close-add-popup").click();
 
       this.clearForm();
-      this.$noty.success("Taxi was successfully added.");
+      this.$noty.success(this.$locale({i: 'taxi.taxiAdded'}));
 
       this.refreshAirTaxiList();
     }

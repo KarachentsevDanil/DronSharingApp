@@ -2,12 +2,12 @@
     <div id="app" v-cloak>
         <div>
           <div v-if="getToken">
-              <top-nav-menu></top-nav-menu>
+              <top-nav-menu :language="language"></top-nav-menu>
                 <BlockUI v-if="blockUiOptions && blockUiOptions.isLoading" :message="blockUiOptions.message" :html="blockUiOptions.icon"></BlockUI>
                 <main>
                     <div class="page-container">
                         <div class="page-content">
-                            <side-nav-menu></side-nav-menu>
+                            <side-nav-menu :language="language"></side-nav-menu>
                             <div class="content-wrapper">
                                 <router-view></router-view>
                                 <app-footer></app-footer>
@@ -21,7 +21,34 @@
 
                     <div class="navbar navbar-inverse" style="background: #37474f; border-radius: 0;">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#"><img src="../../assets/limitless/images/logo_light.png" alt="Engage"></a>
+                            <a class="navbar-brand" href="#"><img src="../../assets/limitless/images/logo_icon_dark.png" alt="Engage"></a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="navbar-mobile">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown dropdown-user">
+                                    <a class="dropdown-toggle legitRipple" data-toggle="dropdown">
+                                        <i class="icon-language"></i>
+                                        <span>
+                                            <span v-localize="{i: 'common.language'}">
+                                            </span>
+                                             ({{language.selectedLanguage}})
+                                        </span>
+                                        <i class="caret"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li @click="$locale({l: 'en-US'}); language.selectedLanguage = 'US';setCurrentLanguage('US');">
+                                            <a href="#" class="legitRipple">
+                                                English
+                                            </a>
+                                        </li>
+                                        <li @click="$locale({l: 'ua-UA'}); language.selectedLanguage = 'UA';setCurrentLanguage('UA');">
+                                            <a href="#" class="legitRipple">
+                                                Українська
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -44,7 +71,7 @@
 import Vue from "vue";
 import appFooter from "./app-footer";
 import sideNavMenu from "./side-nav-menu";
-import topNavMenu from './top-nav-menu';
+import topNavMenu from "./top-nav-menu";
 //import NavMenu from "./nav-menu";
 
 import "../../assets/limitless/icons/icomoon/styles.css";
@@ -73,18 +100,33 @@ export default {
     topNavMenu: topNavMenu
   },
   data() {
-    return {};
+    return {
+      language: {
+        selectedLanguage: "US"
+      }
+    };
   },
   computed: {
     ...mapGetters({
-         getUsername: authResources.AUTH_STORE_NAMESPACE.concat(
-             authGetters.GET_USER_GETTER
-         ),
-         getToken: authResources.AUTH_STORE_NAMESPACE.concat(
-             authGetters.GET_TOKEN_GETTER
-         ),
-      blockUiOptions: "getLoaderOptions"
+      getUsername: authResources.AUTH_STORE_NAMESPACE.concat(
+        authGetters.GET_USER_GETTER
+      ),
+      getToken: authResources.AUTH_STORE_NAMESPACE.concat(
+        authGetters.GET_TOKEN_GETTER
+      ),
+      blockUiOptions: "getLoaderOptions",
+      currentLanguage: "getCurrentLanguage"
     })
+  },
+  methods: {
+    setLocatization(localization) {
+      this.$store.dispatch("setCurrentLanguage", localization);
+    }
+  },
+  watch:{
+      currentLanguage(){
+          console.log(this.currentLanguage);
+      }
   }
 };
 </script>

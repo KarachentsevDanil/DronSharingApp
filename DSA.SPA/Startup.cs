@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +22,15 @@ namespace SAT.SPA
         {
             services.AddCors();
 
-            services.AddMvc().AddJsonOptions(options =>
-            {
-                options.SerializerSettings.ContractResolver
-                    = new DefaultContractResolver();
-            });
+            services
+              .AddMvc(options =>
+              {
+                  options.Filters.Add(new RequireHttpsAttribute());
+              }).AddJsonOptions(options =>
+              {
+                  options.SerializerSettings.ContractResolver
+                      = new DefaultContractResolver();
+              });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

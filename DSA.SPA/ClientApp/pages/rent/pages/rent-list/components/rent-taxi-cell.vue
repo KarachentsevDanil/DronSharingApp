@@ -10,9 +10,9 @@
             <div class="media-body">
                 <span class="display-inline-block text-semibold letter-icon-title">{{row.AirTaxiCompany}} {{row.AirTaxiModel}}</span>
                 <div class="text-muted text-size-small">
-                    <span>Type: {{row.AirTaxiType}}</span>
+                    <span><span v-localize="{i: 'taxi.taxiType'}"></span> {{row.AirTaxiType}}</span>
                     <br>                   
-                    <span>Daily Costs: {{row.AirTaxiDailyCosts}}</span>
+                    <span><span v-localize="{i: 'taxi.pricePerDay'}"></span> {{row.AirTaxiDailyCosts}}</span>
                 </div>
             </div>
         </td>

@@ -5,24 +5,28 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Taxi Type</h4>
+                    <h4 class="modal-title" v-localize="{i: 'type.addTaxiType'}"></h4>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name: </label>
-                        <input v-model="name" class="form-control" placeholder="Type Name..."/>
+                        <label>
+                          <span v-localize="{i: 'common.name'}"></span>:
+                        </label>
+                        <input v-model="name" class="form-control" v-localize="{i: 'type.typeName', attr: 'placeholder'}"/>
                     </div>
                     <div class="form-group">
-                        <label>Description: </label>
-                        <textarea cols="5" rows="5" v-model="description" class="form-control" placeholder="Description...">
+                        <label>
+                           <span v-localize="{i: 'common.description'}"></span>:
+                        </label>
+                        <textarea cols="5" rows="5" v-model="description" class="form-control" v-localize="{i: 'type.typeDescription', attr: 'placeholder'}">
                         </textarea>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button @click="addTaxiType" type="button" :disabled="!this.name" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal">Close</button>
+                    <button @click="addTaxiType" type="button" :disabled="!this.name" class="btn btn-primary" v-localize="{i: 'common.add'}"></button>
+                    <button type="button" class="btn btn-link close-add-popup" data-dismiss="modal" v-localize="{i: 'common.close'}"></button>
                 </div>
             </div>
         </div>
@@ -56,7 +60,7 @@ export default {
       $(".close-add-popup").click();
       
       this.clearForm();
-      this.$noty.success("Taxi type was successfully added.");
+      this.$noty.success(this.$locale({i: 'type.taxiTypeAdded'}));
 
       this.refreshTypeList();
     }
